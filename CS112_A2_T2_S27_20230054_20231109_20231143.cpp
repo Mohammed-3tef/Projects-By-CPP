@@ -36,8 +36,8 @@ void vignere_cipher(string text){
 
     // To keep code running
     while (true){
-        
-        // To get the key from user to encrypt it with  
+
+        // To get the key from user to encrypt it with
         cout << "Enter Your Keyword to encrypt message by it (8 chars Maximum): ";
         getline(cin, key);
         ll count = 0;
@@ -55,7 +55,7 @@ void vignere_cipher(string text){
             // To repeat the key to encrypt the whole text
             for (int j = 0; j < num; j++){
                 repeated_keyword += key;
-            key = repeated_keyword.substr(0, num);
+                key = repeated_keyword.substr(0, num);
             }
 
             // Encryptation process
@@ -71,7 +71,7 @@ void vignere_cipher(string text){
                     result += character;
                 }
 
-                // If char is not alphabetic
+                    // If char is not alphabetic
                 else
                     result += text[i];
                 i++;
@@ -80,7 +80,7 @@ void vignere_cipher(string text){
             break;
         }
 
-        // If key is more than 8 characters
+            // If key is more than 8 characters
         else
             cout << "The input message should be restricted to 8 characters.\n";
     }
@@ -118,7 +118,7 @@ void vignere_decipher(string result){
             while (i < result.length()){
                 result[i] = toupper(result[i]);
                 key[i] = toupper(key[i]);
-                
+
                 // If the char is alphabetic
                 if (isalpha(result[i])){
                     int rem = int(result[i]) - 65;
@@ -132,7 +132,7 @@ void vignere_decipher(string result){
                     text += character;
                 }
 
-                // If it is not alphabetic
+                    // If it is not alphabetic
                 else
                     text += result[i];
                 i++;
@@ -141,8 +141,8 @@ void vignere_decipher(string result){
             break;
         }
 
-        // If key size is more than 8 chars
-        else 
+            // If key size is more than 8 chars
+        else
             cout << "The input message should be restricted to 8 characters.\n";
     }
 }
@@ -173,7 +173,7 @@ int vignere_cipher()
                     cout << endl;
                     break;}
 
-                // If it is more than 80 char
+                    // If it is more than 80 char
                 else
                     cout << "The input message should be restricted to 80 characters.\n";
             }
@@ -196,7 +196,7 @@ int vignere_cipher()
                     break;
                 }
 
-                // If it is more than 80 chars
+                    // If it is more than 80 chars
                 else
                     cout << "The input message should be restricted to 80 characters.\n";
             }
@@ -206,7 +206,7 @@ int vignere_cipher()
         else if (Choice == "3")
             return 0;
 
-        // If user entered invalid input
+            // If user entered invalid input
         else{
             cout << "Please enter a valid choice."<<endl;
             continue;
@@ -238,7 +238,7 @@ string encryption4(string text)
 {
     deque<string>elements;
     string old_result = "";
-    string result =""; 
+    string result ="";
 
     // Make a deque that contain binary conversion to elements from A to Z
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++)
@@ -286,7 +286,7 @@ string decryption4(string text)
         else if (text[i] == 'B' ||text[i] == 'b')
             text2 += '1';
     }
-    
+
     // Check about the existence of these unknown strings and ignore it
     deque<int>numbers;
     for (int i = 0; i < int(text2.size()); i++)
@@ -301,7 +301,7 @@ string decryption4(string text)
             continue;
         }
 
-        // Take every 5 characters in an index of a deque to evaluate it
+            // Take every 5 characters in an index of a deque to evaluate it
         else if (((text2[i] =='1'||text2[i]=='0') && (text2[i+1]=='1'||text2[i+1]=='0') && (text2[i+2]=='1'||text2[i+2]=='0') && (text2[i+3]=='1'||text2[i+3]=='0') && (text2[i+4]=='1'||text2[i+4]=='0')))
         {
             int digit = 0;
@@ -378,7 +378,7 @@ int baconoian_cipher()
         {
             string text;
             cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
-            getline(cin, text); 
+            getline(cin, text);
 
             // Check if the input has any character except alphabet
             while (true)
@@ -397,7 +397,7 @@ int baconoian_cipher()
                     cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
                     getline(cin, text);
                 }
-                else{    
+                else{
                     break;
                 }
             }
@@ -406,7 +406,7 @@ int baconoian_cipher()
             cout <<"The Encrypted Message is: " << encryption4(text) << endl;
         }
 
-        // Check if the user want to enter a message to dencrypt
+            // Check if the user want to enter a message to dencrypt
         else if (main4 == 2)
         {
             string text;
@@ -418,15 +418,15 @@ int baconoian_cipher()
             cout << "The Decrypted Message is: " << decryption4(text) << endl;          // Print the decrypted message
         }
 
-        // Back to the main menu
+            // Back to the main menu
         else if (main4 == 3)
             break;
 
-        // Check the validity of the user choice
-        else 
+            // Check the validity of the user choice
+        else
         {cout << "Please enter a valid choice."<<endl;}
         cout << endl;
-    
+
 
         // To see if user wants to encrype with the same type of cipher or no
         int choice1;
@@ -445,7 +445,7 @@ int baconoian_cipher()
 
             if (choice1 == 1 || choice1 == 2)
                 break;
-            
+
             else
                 cout << "Please enter a valid choice"<<endl;
         }
@@ -538,10 +538,95 @@ void Polybius_Square_cipher(string text)
     cout << result;
 }
 
+int polybius_square_cipher()
+{
+    string Choice, choice1;
+    cout << "\n# ===== Welcome to Polybius Square Cipher ===== #" << endl;
+    while (true)
+    {
+        // Showing a list for user to choose encryption or decryption
+        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
+        cout << "Enter Your Choice: ";
+        cin >> Choice;
+
+        if (Choice == "1"){                         // If he chooses encryption
+            string message, result = "";
+            cin.ignore(1,'\n');
+
+            // To get the text and key from user
+            while (true){
+                cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
+                getline(cin, message);
+
+                // To check the length of text limit
+                if (message.size() <= 80){
+                    cout << endl;
+                    Polybius_Square_cipher(message);
+                    cout << endl << endl;
+                    break;}
+
+                    // If it is more than 80 char
+                else
+                    cout << "The input message should be restricted to 80 characters.\n";
+            }
+        }
+
+
+            // else if (Choice == "2"){                                // if a user chooses to decrypt
+            //     string result, text = "";
+            //     cin.ignore(1, '\n');
+
+            //     while(true){
+            //         // Getting an Encrypted message from user
+            //         cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
+            //         getline(cin, result);
+
+            //         // To check that text size is less than 80 chars and decrypt it
+            //         if (result.size() <= 80){
+            //             vignere_decipher(result);
+            //             cout << endl;
+            //             break;
+            //         }
+
+            //         // If it is more than 80 chars
+            //         else
+            //             cout << "The input message should be restricted to 80 characters.\n";
+            //     }
+            // }
+
+            // Exit of this cipher
+        else if (Choice == "3")
+            return 0;
+
+            // If user entered invalid input
+        else{
+            cout << "Please enter a valid choice."<<endl;
+            continue;
+        }
+
+        // To see if a user wants to encrypt with the same type of cipher or no
+        while (true){
+            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
+            cin >> choice1;
+
+            if (choice1 == "1" || choice1 == "2"){
+                cout << endl;
+                break;}
+
+            else
+                cout << "Please enter a valid choice."<<endl;
+        }
+
+        if (choice1 == "2")
+            return 0 ;
+    }
+    return 0;
+}
+
 // ======================================================= Morse Cipher ======================================================= //
 
 // Encryption process of Morse Cipher
-void Morse_cipher(string text)
+void morse_cipher(string text)
 {
     string result = "";
     for (char i : text)
@@ -608,6 +693,90 @@ void Morse_cipher(string text)
     cout << "The Encrypted Message is: " << result;
 }
 
+int morse_cipher()
+{
+    string Choice, choice1;
+    cout << "\n# ===== Welcome to Morse Cipher ===== #" << endl;
+    while (true)
+    {
+        // Showing a list for user to choose encryption or decryption
+        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
+        cout << "Enter Your Choice: ";
+        cin >> Choice;
+
+        if (Choice == "1"){                         // If he chooses encryption
+            string message, result = "";
+            cin.ignore(1,'\n');
+
+            // To get the text and key from user
+            while (true){
+                cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
+                getline(cin, message);
+
+                // To check the length of text limit
+                if (message.size() <= 80){
+                    cout << endl;
+                    morse_cipher(message);
+                    cout << endl << endl;
+                    break;}
+
+                    // If it is more than 80 char
+                else
+                    cout << "The input message should be restricted to 80 characters.\n";
+            }
+        }
+
+
+            // else if (Choice == "2"){                                // if a user chooses to decrypt
+            //     string result, text = "";
+            //     cin.ignore(1, '\n');
+
+            //     while(true){
+            //         // Getting an Encrypted message from user
+            //         cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
+            //         getline(cin, result);
+
+            //         // To check that text size is less than 80 chars and decrypt it
+            //         if (result.size() <= 80){
+            //             vignere_decipher(result);
+            //             cout << endl;
+            //             break;
+            //         }
+
+            //         // If it is more than 80 chars
+            //         else
+            //             cout << "The input message should be restricted to 80 characters.\n";
+            //     }
+            // }
+
+            // Exit of this cipher
+        else if (Choice == "3")
+            return 0;
+
+            // If user entered invalid input
+        else{
+            cout << "Please enter a valid choice."<<endl;
+            continue;
+        }
+
+        // To see if a user wants to encrypt with the same type of cipher or no
+        while (true){
+            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
+            cin >> choice1;
+
+            if (choice1 == "1" || choice1 == "2"){
+                cout << endl;
+                break;}
+
+            else
+                cout << "Please enter a valid choice."<<endl;
+        }
+
+        if (choice1 == "2")
+            return 0 ;
+    }
+    return 0;
+}
 
 // ======================================================= XOR Cipher ======================================================= //
 
@@ -619,7 +788,7 @@ void Morse_cipher(string text)
 string remove_space(string str){
     string result;
     for(char ch : str) {
-        if(ch != ' ') 
+        if(ch != ' ')
             result += tolower(ch);
     }
     return result;
@@ -651,7 +820,7 @@ int rail_fence(){
     // To see if user wants to encrypt or decrypt
     cout << "\n# ===== Welcome to Rail Fence Cipher ===== #" << endl;
     while(true){
-        
+
         // Declaring some variables
         string text;
         int  choice,choice1;
@@ -755,7 +924,7 @@ int rail_fence(){
                 for (int j = 0 ; j < text.length(); j++ ){
                     if (arr[i][j] != '.'){
                         arr[i][j] = text[counter];
-                        counter++; 
+                        counter++;
                     }
                 }
             }
@@ -779,7 +948,7 @@ int rail_fence(){
             cout << endl;
         }
 
-        // Exit
+            // Exit
         else if (choice == 3)
             return 0;
 
@@ -801,7 +970,7 @@ int rail_fence(){
 
             if (choice1 == 1 || choice1 == 2)
                 break;
-            
+
             else
                 cout << "Please enter a valid choice" << endl;
         }
@@ -833,7 +1002,7 @@ int main(){
         // Show the available ciphers for user
         cout << "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-fence Cipher.\n [11] Exit Program.\nEnter Your choice : ";
         cin >> option;
-        while ((cin.fail())|| (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7))
+        while ((cin.fail())|| (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7 && option != 8 && option != 9 && option != 10 && option != 11))
         {
             cin.clear();                        // Clear the previous input
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -844,27 +1013,27 @@ int main(){
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 
-        // Vignere Cipher
+            // Vignere Cipher
         if (option == 4)
             vignere_cipher();
 
-        // Baconoian Cipher
+            // Baconoian Cipher
         else if (option == 5)
             baconoian_cipher();
 
-        // Polybius Square Cipher
-        // else if (option == 7)
-        //     rail_fence();
-        
-        // Morse Cipher
-        // else if (option == 8)
-        //     rail_fence();
-        
-        // Rail Fence Cipher
+            // Polybius Square Cipher
+        else if (option == 7)
+            polybius_square_cipher();
+
+            // Morse Cipher
+        else if (option == 8)
+            morse_cipher();
+
+            // Rail Fence Cipher
         else if (option == 10)
             rail_fence();
-            
-        // Exit Program
+
+            // Exit Program
         else if (option == 11){
             cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
             break;
@@ -890,7 +1059,7 @@ int main(){
                 break;
             }
 
-            else                            // If it is invalid
+            else                                             // If it is invalid
                 cout << "Please enter a valid option" << endl;
             cout << "\n";
         }
