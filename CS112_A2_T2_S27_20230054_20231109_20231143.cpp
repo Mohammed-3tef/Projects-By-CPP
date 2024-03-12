@@ -17,6 +17,15 @@
 #define ll long long
 using namespace std;
 
+// ======================================================= Affine Cipher ======================================================= //
+
+
+// ======================================================= Route Cipher ======================================================= //
+
+
+// ======================================================= Atbash Cipher ======================================================= //
+
+
 // ======================================================= Vignere Cipher ======================================================= //
 
 // Encryption process of Vignere Cipher
@@ -446,6 +455,164 @@ int baconoian_cipher()
     }
 }
 
+
+// ======================================================= Simple Substitution Cipher ======================================================= //
+
+
+
+
+// ======================================================= Polybius Square Cipher ======================================================= //
+
+// Encryption process of Polybius Square Cipher
+void Polybius_Square_cipher(string text)
+{
+    int arr[5];
+    for (int j = 0; j<5 ;j++)
+    {
+        cout << "Enter Your Keyword: ";
+        cin >> arr[j];
+    }
+    string result = "";
+    cout << "\nThe Encrypted Message is: ";
+    for (char i : text)
+    {
+        i = toupper(i);
+        if(isalpha(i))
+        {
+            if (i == 'A')
+            {cout << arr[0] << arr[0];}
+            else if (i == 'B')
+            {cout << arr[0] << arr[1];}
+            else if (i == 'C')
+            {cout << arr[0] << arr[2];}
+            else if (i == 'D')
+            {cout << arr[0] << arr[3];}
+            else if (i == 'E')
+            {cout << arr[0] << arr[4];}
+            else if (i == 'F')
+            {cout << arr[1] << arr[0];}
+            else if (i == 'G')
+            {cout << arr[1] << arr[1];}
+            else if (i == 'H')
+            {cout << arr[1] << arr[2];}
+            else if (i == 'I')
+            {cout << arr[1] << arr[3];}
+            else if (i == 'J')
+            {cout << arr[1] << arr[3];}
+            else if (i == 'K')
+            {cout << arr[1] << arr[4];}
+            else if (i == 'L')
+            {cout << arr[2] << arr[0];}
+            else if (i == 'M')
+            {cout << arr[2] << arr[1];}
+            else if (i == 'N')
+            {cout << arr[2] << arr[2];}
+            else if (i == 'O')
+            {cout << arr[2] << arr[3];}
+            else if (i == 'P')
+            {cout << arr[2] << arr[4];}
+            else if (i == 'Q')
+            {cout << arr[3] << arr[0];}
+            else if (i == 'R')
+            {cout << arr[3] << arr[1];}
+            else if (i == 'S')
+            {cout << arr[3] << arr[2];}
+            else if (i == 'T')
+            {cout << arr[3] << arr[3];}
+            else if (i == 'U')
+            {cout << arr[3] << arr[4];}
+            else if (i == 'V')
+            {cout << arr[4] << arr[0];}
+            else if (i == 'W')
+            {cout << arr[4] << arr[1];}
+            else if (i == 'X')
+            {cout << arr[4] << arr[2];}
+            else if (i == 'Y')
+            {cout << arr[4] << arr[3];}
+            else if (i == 'Z')
+            {cout << arr[4] << arr[4];}
+        }
+        else if (isspace(i))
+        {cout << " ";}
+    }
+    cout << result;
+}
+
+// ======================================================= Morse Cipher ======================================================= //
+
+// Encryption process of Morse Cipher
+void Morse_cipher(string text)
+{
+    string result = "";
+    for (char i : text)
+    {
+        i = toupper(i);
+        if(isalpha(i))
+        {
+            if (i == 'A')
+            {result += ".- ";}
+            else if (i == 'B')
+            {result += "-... ";}
+            else if (i == 'C')
+            {result += "-.-. ";}
+            else if (i == 'D')
+            {result += "-.. ";}
+            else if (i == 'E')
+            {result += ". ";}
+            else if (i == 'F')
+            {result += "..-.";}
+            else if (i == 'G')
+            {result += "--. ";}
+            else if (i == 'H')
+            {result += ".... ";}
+            else if (i == 'I')
+            {result += ".. ";}
+            else if (i == 'J')
+            {result += ".--- ";}
+            else if (i == 'K')
+            {result += "-.- ";}
+            else if (i == 'L')
+            {result += ".-.. ";}
+            else if (i == 'M')
+            {result += "-- ";}
+            else if (i == 'N')
+            {result += "-. ";}
+            else if (i == 'O')
+            {result += "--- ";}
+            else if (i == 'P')
+            {result += ".--. ";}
+            else if (i == 'Q')
+            {result += "--.- ";}
+            else if (i == 'R')
+            {result += ".-. ";}
+            else if (i == 'S')
+            {result += "... ";}
+            else if (i == 'T')
+            {result += "- ";}
+            else if (i == 'U')
+            {result += "..- ";}
+            else if (i == 'V')
+            {result += "...- ";}
+            else if (i == 'W')
+            {result += ".-- ";}
+            else if (i == 'X')
+            {result += "-..- ";}
+            else if (i == 'Y')
+            {result += "-.-- ";}
+            else if (i == 'Z')
+            {result += "--.. ";}
+        }
+        else if (isspace(i))
+        {result += "  ";}
+    }
+    cout << "The Encrypted Message is: " << result;
+}
+
+
+// ======================================================= XOR Cipher ======================================================= //
+
+
+
 // ======================================================= Rail Fence Cipher ======================================================= //
 
 // Remove spaces and return it in lower case
@@ -644,6 +811,9 @@ int rail_fence(){
     }
 }
 
+
+
+
 // ========================================================================>> Main Program <<======================================================================== //
 
 int main(){
@@ -661,9 +831,9 @@ int main(){
     while (true){
 
         // Show the available ciphers for user
-        cout << "Which type of Cipher Do you want?\n [1] Vignere Cipher.\n [2] Baconoian Cipher.\n [3] Rail Fence Cipher.\n [4] Exit Program.\nEnter Your choice : ";
+        cout << "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-fence Cipher.\n [11] Exit Program.\nEnter Your choice : ";
         cin >> option;
-        while ((cin.fail())|| (option != 1 && option != 2 && option != 3 && option != 4))
+        while ((cin.fail())|| (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7))
         {
             cin.clear();                        // Clear the previous input
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -675,19 +845,27 @@ int main(){
 
 
         // Vignere Cipher
-        if (option == 1)
+        if (option == 4)
             vignere_cipher();
 
-        // // Baconoian Cipher
-        else if (option == 2)
+        // Baconoian Cipher
+        else if (option == 5)
             baconoian_cipher();
 
+        // Polybius Square Cipher
+        // else if (option == 7)
+        //     rail_fence();
+        
+        // Morse Cipher
+        // else if (option == 8)
+        //     rail_fence();
+        
         // Rail Fence Cipher
-        else if (option == 3)
+        else if (option == 10)
             rail_fence();
-
+            
         // Exit Program
-        else if (option == 4){
+        else if (option == 11){
             cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
             break;
         }
