@@ -3,7 +3,7 @@ It is a small program for encryption of your important information like your pas
 ## Partner 🤎💫
 1 - Mohammed Atef Abd El-Kader.   (Toffi)                
 2 - Aly El-Deen Yasser Aly.       (Aly El-badry)    
-3 - Israa Emary Abd El-Salam.
+3 - Esraa Emary Abd El-Salam.
 ### Ciphers 
 1 - Baconian Cipher                      
 2 - Vegnere Cipher                       
