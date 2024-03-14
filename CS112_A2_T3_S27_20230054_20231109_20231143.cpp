@@ -39,7 +39,7 @@ int main(){
 
 
             int choice2;
-            cout << "Do you want to continue?\n[1]Yes.\n[2]No.\nChoice: ";
+            cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your Choice: ";
             cin >> choice2;
             while ((cin.fail())||(choice!= 1 && choice!= 2)){
                 cin.clear();
