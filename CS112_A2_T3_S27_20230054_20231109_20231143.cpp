@@ -18,7 +18,7 @@ string R_N_C(){
 int main(){
     while (true)
     {
-        cout << "#=====Welcome to our application=====#\nWhat do you want to do?\n[1]Rational Number Calculator.\n[2]Exit.\nChoice: ";
+        cout << "# ===== Welcome To Our Application ===== #\nWhat do you want to do?\n [1] Rational Number Calculator.\n [2] Exit Program.\nEnter Your Choice: ";
         int choice;
         cin>> choice;
         while ((cin.fail())||(choice!= 1 && choice!= 2)){
