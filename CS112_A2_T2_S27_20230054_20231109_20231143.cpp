@@ -1,6 +1,6 @@
 /*
 --> Name: CS112_A2_T2_S27_20230054_20231109_20231143.cpp
---> Purpose: this program is for encryption and decription your important information like your password, ID, etc., by three ways: Vignere cipher, Baconian cipher and Rail Fence cipher.
+--> Purpose: this program is for encryption and decription your important information like your password, ID, etc.
 
 --> Author of cipher number 3 (Vignere Cipher): Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)
 --> Email : mohamed45452020@gmail.com
@@ -22,6 +22,249 @@ using namespace std;
 
 // ======================================================= Route Cipher ======================================================= //
 
+// Encryption Process of Route Cipher.
+void encyption(string text){
+    string new_text = "", result = "";
+    ll key;
+    cout << "Enter Your Key: ";
+    cin >> key;
+
+    for(char i : text){
+        if (isalpha(i))
+            new_text += i;
+    }
+    while (key < 2 || key > new_text.size()/2){
+    cout << "Invalid Input.\nEnter Your Key: ";
+    cin >> key;
+    }
+    int num = new_text.size() / key;
+    if (num % key == 0){
+        char matrix[text.size()], arr[num][key];
+        for (int i = 0; i < text.size(); i++){
+            matrix[i] = new_text[i];
+        }
+
+        //2D Matrix
+        int m = 0;
+        for (int row = 0; row < num; row++){
+            for (int col = 0; col < key; col++){
+                matrix[m] = toupper(matrix[m]);
+                arr[row][col] = matrix[m];
+                m++;
+            }
+        }
+
+        int i, k = 0, l = 0, n = key;
+        m = new_text.size() / key;
+        /* k - starting row index
+            m - ending row index
+            l - starting column index
+            n - ending column index
+            i - iterator
+        */
+        string res = "";
+        while (k < m && l < n) {
+            /* Print the last column
+             from the remaining columns */
+            for (i = k; i < m; ++i) {
+                res += arr[i][n - 1];
+            }
+            n--;
+
+            /* Print the last row from
+                    the remaining rows */
+            if (k < m) {
+                for (i = n - 1; i >= l; --i) {
+                    res += arr[m - 1][i];
+                }
+                m--;
+            }
+            /* Print the first column from
+                       the remaining columns */
+            if (l < n) {
+                for (i = m - 1; i >= k; --i) {
+                    res += arr[i][l];
+                }
+                l++;
+            }
+
+            /* Print the first row from
+                   the remaining rows */
+            for (i = l; i < n; ++i) {
+                res += arr[k][i];
+            }
+            k++;
+        }
+        cout << "\nThe Encrypted Message is: " << res << endl;
+    }
+    else{
+        char matrix[key * (num+1)], arr[num+1][key];
+        int j = text.size();
+        while (j < key*(num+1)){
+            new_text += 'X';
+            j++;
+        }
+
+        for (int i = 0; i < key*(num+1); i++){
+            matrix[i] = new_text[i];
+        }
+
+        //2D Matrix
+        int m = 0;
+        for (int row = 0; row < num+1; row++){
+            for (int col = 0; col < key; col++){
+                matrix[m] = toupper(matrix[m]);
+                arr[row][col] = matrix[m];
+                m++;
+            }
+        }
+
+        int i, k = 0, l = 0, n = key;
+        m = new_text.size() / key;
+        /* k --> starting row index.
+            m --> ending row index.
+            l --> starting column index.
+            n --> ending column index.
+            i --> iterator.
+        */
+        string res = "";
+        while (k < m && l < n) {
+            
+            /* Print the last column
+             from the remaining columns */
+            for (i = k; i < m; ++i) {
+                res += arr[i][n - 1];
+            }
+            n--;
+
+            /* Print the last row from
+                    the remaining rows */
+            if (k < m) {
+                for (i = n - 1; i >= l; --i) {
+                    res += arr[m - 1][i];
+                }
+                m--;
+            }
+            
+            /* Print the first column from
+                       the remaining columns */
+            if (l < n) {
+                for (i = m - 1; i >= k; --i) {
+                    res += arr[i][l];
+                }
+                l++;
+            }
+
+            /* Print the first row from
+                   the remaining rows */
+            for (i = l; i < n; ++i) {
+                res += arr[k][i];
+            }
+            k++;
+        }
+        cout << "\nThe Encrypted Message is: " << res.substr(0,key*(num+1)) << endl;
+    }
+}
+
+// Decipher the process of Route Cipher.
+void decryption(string text){
+    string new_text = "", result = "";
+    ll key;
+    cout << "Enter Your Key: ";
+    cin >> key;
+
+    for(char i : text){
+        if (isalpha(i))
+            new_text += i;
+    }
+    while (key < 2 || key > new_text.size()/2){
+        cout << "Invalid Input.\nEnter Your Key: ";
+        cin >> key;
+}
+
+int route_cipher()
+{
+    string Choice, choice1;
+    cout << "\n# ===== Welcome to Route Cipher ===== #" << endl;
+    while (true)
+    {
+        // Showing a list for user to choose encryption or decryption.
+        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
+        cout << "Enter Your Choice: ";
+        cin >> Choice;
+
+        if (Choice == "1"){                         // If he chooses encryption.
+            string message, result = "";
+            cin.ignore(1,'\n');
+
+            // To get the text and key from user.
+            while (true){
+                cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
+                getline(cin, message);
+
+                // To check the length of text limit.
+                if (message.size() <= 80){
+                    encyption(message);
+                    cout << endl;
+                    break;}
+
+                    // If it is more than 80 char.
+                else
+                    cout << "The input message should be restricted to 80 characters.\n";
+            }
+        }
+
+
+        else if (Choice == "2"){                                // if a user chooses to decrypt.
+            string result, text = "";
+            cin.ignore(1, '\n');
+
+            while(true){
+                // Getting an Encrypted message from user.
+                cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
+                getline(cin, result);
+
+                // To check that text size is less than 80 chars and decrypt it.
+                if (result.size() <= 80){
+                    decryption(result);
+                    cout << endl;
+                    break;
+                }
+
+                    // If it is more than 80 chars.
+                else
+                    cout << "The input message should be restricted to 80 characters.\n";
+            }
+        }
+
+            // Exit of this cipher.
+        else if (Choice == "3")
+            return 0;
+
+            // If user entered invalid input.
+        else{
+            cout << "Please enter a valid choice."<<endl;
+            continue;
+        }
+
+        // To see if a user wants to encrypt with the same type of cipher or no.
+        while (true){
+            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
+            cin >> choice1;
+
+            if (choice1 == "1" || choice1 == "2"){
+                cout << endl;
+                break;}
+
+            else
+                cout << "Please enter a valid choice."<<endl;
+        }
+
+        if (choice1 == "2")
+            return 0 ;
+    }
+    return 0;
+}
 
 // ======================================================= Atbash Cipher ======================================================= //
 
