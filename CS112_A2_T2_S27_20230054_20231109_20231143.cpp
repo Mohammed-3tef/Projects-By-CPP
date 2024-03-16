@@ -1261,7 +1261,7 @@ int main(){
             route_cipher();
         
             // Vignere Cipher
-        if (option == 4)
+       else if (option == 4)
             vignere_cipher();
 
             // Baconoian Cipher
