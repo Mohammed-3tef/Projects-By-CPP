@@ -1256,6 +1256,10 @@ int main(){
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
 
+            // Route Cipher
+        if (option == 2)
+            route_cipher();
+        
             // Vignere Cipher
         if (option == 4)
             vignere_cipher();
