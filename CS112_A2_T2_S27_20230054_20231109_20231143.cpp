@@ -17,7 +17,114 @@
 #define ll long long
 using namespace std;
 
+// Defining some functions
+// Defining a function for all the menus
+ll menu_check(vector<string> choices, string menu){
+    string choice;
+    while(true){
+        cout<<menu;
+        getline(cin, choice);
+        for(int i = 0 ; i < choices.size() ;i++){
+            if (choice == choices[i]){
+                cin.ignore(0,'\n');
+                return stoll(choice);
+            }
+        }
+        cout<<"please enter a valid choice"<<endl;
+    }
+}
+
+bool continue_or(){
+    string choice;
+    while (true){
+        cout << "do you want to continue in this cipher?\n[1] Yes\n[2] No\nYour choice is :";
+        getline(cin, choice);
+
+        if(choice == "1")
+            return true;
+        else if (choice == "2")
+            return false;
+        else
+            cout << "Please enter a valid input" << endl;
+    }
+}
+
+// To check that key is a number
+ll check_number (string print){
+    string key;
+    while (true){
+        bool check = true;
+        cout << print;
+        getline(cin, key);
+        for (char i : key){
+            if(!isdigit(i) || stoll(key) < 0){
+                break;
+            }
+        }
+
+        if (check)
+            return stoll(key);
+        else
+            cout << "Please enter a valid number" << endl;
+    }
+}
 // ======================================================= Affine Cipher ======================================================= //
+int affine_cipher(){
+    int choice;
+    ll a, b ,c;
+    bool checkk = true;
+    while (checkk){
+        string menu, text, result = "";
+        vector <string> choices = {"1", "2", "3"};
+        cout << "# ====Welcome to Affine cipher==== #"<<endl;
+        menu = "What will you do ?\n[1] Encryption function\n[2] Decryption function\n[3] Exit this cipher\nYour choice : ";
+        choice = menu_check(choices, menu);
+
+        if (choice == 1){
+            cout << "Enter the Text you want to encrypt : ";
+            getline(cin, text);
+            a = check_number("Enter the number (a) to encrypt (the form of encryption is (a*(char askii value)+ b) % 26) : ");
+            b = check_number("enter the number (b) to encrypt (the form of encryption is (a*(char askii value)+ b) % 26) : ");
+            cout << endl << "Note the form of encryption is (a*(char askii value)+b) \nthe form of decryption is (c* (char ascii value - b )) \nwhere (a * c) % 26 must equal 1 for right encryption and decryption"<<endl<<endl;
+
+            for(char i : text){
+                if (isalpha(i))
+                    result += char((( a * (toupper(i)-'A') + b ) % 26) + 'A');
+                else
+                    result += i;
+            }
+            cout << "The encryption of your text : " << result << endl;
+        }
+
+        else if(choice == 2){
+
+            cout << "Enter the Text you wamt to decrypt : ";
+            getline(cin, text);
+            c = check_number("Enter the number (c) to decrypt (the form of encryption is (c*(char askii value- b) % 26) : ");
+            b = check_number("enter the number (b) to encrypt (the form of encryption is (c*(char askii value- b) % 26) : ");
+            cout << endl << "Note the form of encryption is (a*(char askii value)+b) \nthe form of decryption is (c* (char ascii value - b )) \nwhere (a * c) % 26 must equal 1 for right encryption and decryption"<<endl<<endl;
+
+            for(char i : text){
+                if(isalpha(i)){
+                    ll sum = (c * ( (toupper(i) - 'A') - b ) ) % 26;
+                    if (sum < 0)
+                        sum += 26;
+                    result += char(sum + 'A');
+                }
+                else
+                    result += i;
+            }
+            cout << "The decryption of your message: " <<result << endl;
+        }
+    
+        else if(choice == 3){
+            return 0;
+        }
+
+        checkk = continue_or();
+    }
+    return 0;
+}
 
 
 // ======================================================= Route Cipher ======================================================= //
