@@ -287,8 +287,8 @@ void decryption(string text){
     while (key < 2 || key > new_text.size()/2){
         cout << "Invalid Input.\nEnter Your Key: ";
         cin >> key;
+    }
 }
-
 int route_cipher()
 {
     string Choice, choice1;
