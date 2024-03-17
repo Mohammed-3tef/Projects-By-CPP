@@ -1671,7 +1671,7 @@ int main(){
         else if (option == 5)
             baconoian_cipher();
 
-        else if (option == 5)
+        else if (option == 6)
             simple_substitution_cipher();
 
             // Polybius Square Cipher
