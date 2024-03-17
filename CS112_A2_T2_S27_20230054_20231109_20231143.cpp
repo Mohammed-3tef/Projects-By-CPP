@@ -1,14 +1,14 @@
 /*
---> Name: CS112_A2_T2_S27_20230054_20231109_20231143.cpp
+--> Name: CS112_A2_T4_S27_20230054_20231109_20231143.cpp
 --> Purpose: this program is for encryption and decription your important information like your password, ID, etc.
 
---> Author of cipher number 3 (Vignere Cipher): Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)
+--> Author : Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)
 --> Email : mohamed45452020@gmail.com
 
---> Author of cipher number 4 (Baconian Cipher): Esraa Emary Abd Elsalam.             (ID:20230054)         (Section : S27)
+--> Author : Esraa Emary Abd Elsalam.             (ID:20230054)         (Section : S27)
 --> Email : esraaemary33@gmail.com
 
---> Author of cipher number 9 (Rail Fence Cipher): Aly El-Deen Yasser Aly.            (ID:20231109)         (Section : S27)
+--> Author : Aly El-Deen Yasser Aly.            (ID:20231109)         (Section : S27)
 --> Email : aibakgaming747@gmail.com
 
 ==============================================================================================================================================*/
@@ -34,6 +34,7 @@ ll menu_check(vector<string> choices, string menu){
     }
 }
 
+// To see if user want to continue
 bool continue_or(){
     string choice;
     while (true){
@@ -68,6 +69,7 @@ ll check_number (string print){
             cout << "Please enter a valid number" << endl;
     }
 }
+
 // ======================================================= Affine Cipher ======================================================= //
 int affine_cipher(){
     int choice;
@@ -75,9 +77,9 @@ int affine_cipher(){
     bool checkk = true;
     while (checkk){
         string menu, text, result = "";
-        vector <string> choices = {"1", "2", "3"};
         cout << "# ====Welcome to Affine cipher==== #"<<endl;
         menu = "What will you do ?\n[1] Encryption function\n[2] Decryption function\n[3] Exit this cipher\nYour choice : ";
+        vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu);
 
         if (choice == 1){
@@ -289,20 +291,24 @@ void decryption(string text){
         cin >> key;
     }
 }
+
+// main function 
 int route_cipher()
 {
-    string Choice, choice1;
+    ll Choice;
     cout << "\n# ===== Welcome to Route Cipher ===== #" << endl;
-    while (true)
+    bool checkk = true;
+    while (checkk)
     {
         // Showing a list for user to choose encryption or decryption.
-        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
-        cout << "Enter Your Choice: ";
-        cin >> Choice;
+        string menu1 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter Your Choice: ";
+        vector <string> choices = {"1", "2", "3"};
+        Choice = menu_check(choices, menu1);
 
-        if (Choice == "1"){                         // If he chooses encryption.
+
+        if (Choice == 1){                         // If he chooses encryption.
             string message, result = "";
-            cin.ignore(1,'\n');
+            cin.ignore(0,'\n');
 
             // To get the text and key from user.
             while (true){
@@ -322,9 +328,9 @@ int route_cipher()
         }
 
 
-        else if (Choice == "2"){                                // if a user chooses to decrypt.
+        else if (Choice == 2){                                // if a user chooses to decrypt.
             string result, text = "";
-            cin.ignore(1, '\n');
+            cin.ignore(0, '\n');
 
             while(true){
                 // Getting an Encrypted message from user.
@@ -345,30 +351,11 @@ int route_cipher()
         }
 
             // Exit of this cipher.
-        else if (Choice == "3")
+        else if (Choice == 3)
             return 0;
 
-            // If user entered invalid input.
-        else{
-            cout << "Please enter a valid choice."<<endl;
-            continue;
-        }
-
         // To see if a user wants to encrypt with the same type of cipher or no.
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-
-            if (choice1 == "1" || choice1 == "2"){
-                cout << endl;
-                break;}
-
-            else
-                cout << "Please enter a valid choice."<<endl;
-        }
-
-        if (choice1 == "2")
-            return 0 ;
+        checkk = continue_or();
     }
     return 0;
 }
@@ -432,7 +419,7 @@ string encrypt(string &text, int choice){
                     result += static_cast<char>(12+194-static_cast<int>(text[i]));
                 }
                 else if(digit > 109){
-                     result += static_cast<char>(12+220-static_cast<int>(text[i]));
+                    result += static_cast<char>(12+220-static_cast<int>(text[i]));
                 }
             }
         }
@@ -488,102 +475,50 @@ string decrypt(string &text, int choice){
 //main program of Atbash Cipher
 int atbash_cipher(){
     cout<<"=====Welcome to Atbash Cipher====="<<endl;
-    while(true){
+    bool checkk = true;
+    while(checkk){
         //print the menue and check the validity of choice
-        cout << "What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
-        int choice;
-        cin>>choice;
-        while ((cin.fail())||(choice!= 1 && choice!= 2 && choice!=3)){
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout<< "Invalid input."<<endl;
-            cout<< "Please enter a valid choice: ";
-            cin>>choice;
-        }  
+        string menu2 ="What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
+        ll choice;
+        vector <string> choices = {"1", "2", "3"};
+        choice = menu_check(choices, menu2);
+
         //print the menue and check the validity of choice and encrypt a message
         if(choice == 1){
-            cout << "What do you want to do?\n[1]Encrypt a message on the whole alphabet.\n[2]Encrypt a message on half alphabet.\n[3]Back.\nChoice: ";
+            string menu = "What do you want to do?\n[1]Encrypt a message on the whole alphabet.\n[2]Encrypt a message on half alphabet.\n[3]Back.\nChoice: ";
             int choice3;
-            cin>>choice3;
-            while ((cin.fail())||(choice3!= 1 && choice3!= 2 && choice3!=3)){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout<< "Invalid input."<<endl;
-                cout<< "Please enter a valid choice: ";
-                cin>>choice3;
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            vector <string> choices = {"1", "2", "3"};
+            choice3 = menu_check(choices, menu);
+
             string text;
-            while (true){
-                if(choice3 == 1 || choice3 == 2){
-                    cout<<"Please enter the message you want to encrypt: ";
-                    getline(cin, text);
-                    cout << "The encrypted message is: "<<encrypt(text, choice3)<<endl;
-                    break;
-                }else if(choice3 == 3){
-                    break;
-                }else{
-                    cout <<"Please enter a valid choice: ";
-                    cin >>choice3;
-                }
+            if(choice3 == 1 || choice3 == 2){
+                cout<<"Please enter the message you want to encrypt: ";
+                getline(cin, text);
+                cout << "The encrypted message is: "<<encrypt(text, choice3)<<endl;
             }
         }
         //print the menue and check the validity of choice and decrypt a message
         else if(choice == 2){
-            cout << "What do you want to do?\n[1]Decrypt a message on the whole alphabet.\n[2]Decrypt a message on half alphabet.\n[3]Back."<< endl;
-            int choice2;
-            cin>>choice2;
-             while ((cin.fail())||(choice2!= 1 && choice2!= 2 && choice2!=3)){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout<< "Invalid input."<<endl;
-                cout<< "Please enter a valid choice: ";
-                cin>>choice2;
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            string menu4 = "What do you want to do?\n[1]Decrypt a message on the whole alphabet.\n[2]Decrypt a message on half alphabet.\n[3]Back.\nChoice:";
+            ll choice2;
+            vector <string> choices = {"1", "2", "3"};
+            choice2 = menu_check(choices, menu4);
+
             string text;
-            while (true){
-                if(choice2 == 1 || choice2 == 2){
-                    cout<<"Please enter the message you want to decrypt: ";
-                    getline(cin, text);
-                    cout << "The decrypted message is: "<<decrypt(text, choice2)<<endl;
-                    break;
-                }else if(choice2 == 3){
-                    break;
-                }else{
-                    cout <<"Please enter a valid choice: ";
-                    cin >>choice2;
-                }
+            if(choice2 == 1 || choice2 == 2){
+                cout<<"Please enter the message you want to decrypt: ";
+                getline(cin, text);
+                cout << "The decrypted message is: "<<decrypt(text, choice2)<<endl;
             }
+            
         }
         //exit the cipher
         else if(choice == 3){
             break;
         }
-        else{
-            cout <<  "Invalid choice.\n";
-            continue;
-        }
+
         // To see if user want to encrype with the same type of cipher or no
-        int choice1;
-        while (true){
-            cout<<"Do you want to continue with same type of cipher?\n[1] Yes\n[2] No\nYour choice: ";
-            cin>>choice1;
-            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 )){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input.\n";
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> choice1;
-            }
-            if (choice1 == 1 || choice1 == 2)
-                break;
-            
-            else
-                cout << "Please enter a valid choice: ";
-        }
-        if (choice1 == 2)
-            return 0 ;
+        checkk = continue_or();
     }
     return 0;
 }
@@ -711,18 +646,20 @@ void vignere_decipher(string result){
 
 int vignere_cipher()
 {
-    string Choice, choice1;
+    bool checkk = true;
+    ll Choice;
     cout << "\n# ===== Welcome to Vignere Cipher ===== #" << endl;
-    while (true)
+    while (checkk)
     {
         // Showing a list for user to choose encryption or decryption
-        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
-        cout << "Enter Your Choice: ";
-        cin >> Choice;
+        string menu8 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
+        vector <string> choices = {"1", "2", "3"};
+        Choice = menu_check(choices, menu8);
 
-        if (Choice == "1"){                         // If he chooses encryption
+
+        if (Choice == 1){                         // If he chooses encryption
             string message, result = "";
-            cin.ignore(1,'\n');
+            cin.ignore(0,'\n');
 
             // To get the text and key from user
             while (true){
@@ -742,9 +679,9 @@ int vignere_cipher()
         }
 
 
-        else if (Choice == "2"){                                // if a user chooses to decrypt
+        else if (Choice == 2){                                // if a user chooses to decrypt
             string result, text = "";
-            cin.ignore(1, '\n');
+            cin.ignore(0, '\n');
 
             while(true){
                 // Getting an Encrypted message from user
@@ -765,30 +702,11 @@ int vignere_cipher()
         }
 
             // Exit of this cipher
-        else if (Choice == "3")
+        else if (Choice == 3)
             return 0;
 
-            // If user entered invalid input
-        else{
-            cout << "Please enter a valid choice."<<endl;
-            continue;
-        }
-
         // To see if a user wants to encrypt with the same type of cipher or no
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-
-            if (choice1 == "1" || choice1 == "2"){
-                cout << endl;
-                break;}
-
-            else
-                cout << "Please enter a valid choice."<<endl;
-        }
-
-        if (choice1 == "2")
-            return 0 ;
+        checkk = continue_or();
     }
     return 0;
 }
@@ -891,7 +809,7 @@ string decryption4(string text)
 }
 
 // Check if the input has any character except A, B, a or b
-string validity(string &text)
+string validity1(string &text)
 {
     while (true)
     {
@@ -920,20 +838,13 @@ int baconoian_cipher()
 {
     // To see if user wants to encrypt or decrypt
     cout << "\n# ===== Welcome to Baconian Cipher ===== #" << endl;
-    while(true)
+    bool checkk = true;
+    while(checkk)
     {
-        cout << "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit.\nEnter Your choice: ";
-        int main4;
-        cin >> main4;
-        while ((cin.fail())|| (main4 != 1 && main4 != 2 && main4 != 3))
-        {
-            cin.clear();                            // Clear the previous input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input.\n";             // Print an error message
-            cout << "Please select a valid choice from the previous menu: ";
-            cin >> main4;                           // Get a new clone then check it
-        }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        string menu3 = "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit.\nEnter Your choice: ";
+        ll main4;
+        vector <string> choices = {"1", "2", "3"};
+        main4 = menu_check(choices, menu3);
 
         //check if the user wants to enter a message to encrypt
         if (main4 == 1)
@@ -974,7 +885,7 @@ int baconoian_cipher()
             string text;
             cout << "Please enter the message to decrypt that only contains A, B, a or b.: ";
             getline(cin, text);
-            validity(text);
+            validity1(text);
 
             // Print the decrypted message
             cout << "The Decrypted Message is: " << decryption4(text) << endl;          // Print the decrypted message
@@ -984,36 +895,8 @@ int baconoian_cipher()
         else if (main4 == 3)
             break;
 
-            // Check the validity of the user choice
-        else
-        {cout << "Please enter a valid choice."<<endl;}
-        cout << endl;
-
-
         // To see if user wants to encrype with the same type of cipher or no
-        int choice1;
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 ))
-            {
-                cin.clear();                                // Clear the previous input
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input.\n";                 // Print an error message
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> choice1;                             // Get a new clone then check it
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-            if (choice1 == 1 || choice1 == 2)
-                break;
-
-            else
-                cout << "Please enter a valid choice"<<endl;
-        }
-
-        if (choice1 == 2)
-            return 0 ;
+        checkk = continue_or();
     }
 }
 
@@ -1142,19 +1025,14 @@ string decrypt(string &text, string keyword){
 //main program of Simple Substitution Cipher
 int simple_substitution_cipher(){
     cout<<"=====Welcome to Simple Substitution Cipher====="<<endl;
-    while(true){
+    bool checkk = true;
+    while(checkk){
         //print the menue and check the validity of choice
-        cout << "What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
-        int choice;
-        cin>>choice;
-        while ((cin.fail())||(choice!= 1 && choice!= 2 && choice!=3)){
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout<< "Invalid input."<<endl;
-            cout<< "Please enter a valid choice: ";
-            cin>>choice;
-        }  
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        string menu4 = "What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
+        ll choice;
+        vector <string> choices = {"1", "2", "3"};
+        choice = menu_check(choices, menu4);
+
         //get the message and encrypt messages
         if(choice == 1){
             string text, keyword;
@@ -1182,30 +1060,9 @@ int simple_substitution_cipher(){
         else if(choice == 3){
             break;
         }
-        else{
-            cout <<  "Invalid choice.\n";
-            continue;
-        }
+
         // To see if user want to encrype with the same type of cipher or no
-        int choice1;
-        while (true){
-            cout<<"Do you want to continue with same type of cipher?\n[1] Yes\n[2] No\nYour choice: ";
-            cin>>choice1;
-            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 )){
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input.\n";
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> choice1;
-            }
-            if (choice1 == 1 || choice1 == 2)
-                break;
-            
-            else
-                cout << "Please enter a valid choice: ";
-        }
-        if (choice1 == 2)
-            return 0 ;
+        checkk = continue_or();
     }
     return 0;
 }
@@ -1290,18 +1147,19 @@ void Polybius_Square_cipher(string text)
 
 int polybius_square_cipher()
 {
-    string Choice, choice1;
+    ll Choice;
     cout << "\n# ===== Welcome to Polybius Square Cipher ===== #" << endl;
-    while (true)
+    bool checkk = true;
+    while (checkk)
     {
         // Showing a list for user to choose encryption or decryption
-        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
-        cout << "Enter Your Choice: ";
-        cin >> Choice;
+        string menu5 ="What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter your choice: ";
+        vector <string> choices = {"1", "2", "3"};
+        Choice = menu_check(choices, menu5);
 
-        if (Choice == "1"){                         // If he chooses encryption
+        if (Choice == 1){                         // If he chooses encryption
             string message, result = "";
-            cin.ignore(1,'\n');
+            cin.ignore(0,'\n');
 
             // To get the text and key from user
             while (true){
@@ -1322,9 +1180,9 @@ int polybius_square_cipher()
         }
 
 
-            // else if (Choice == "2"){                                // if a user chooses to decrypt
+            // else if (Choice == 2){                                // if a user chooses to decrypt
             //     string result, text = "";
-            //     cin.ignore(1, '\n');
+            //     cin.ignore(0, '\n');
 
             //     while(true){
             //         // Getting an Encrypted message from user
@@ -1345,30 +1203,10 @@ int polybius_square_cipher()
             // }
 
             // Exit of this cipher
-        else if (Choice == "3")
+        else if (Choice == 3)
             return 0;
-
-            // If user entered invalid input
-        else{
-            cout << "Please enter a valid choice."<<endl;
-            continue;
-        }
-
-        // To see if a user wants to encrypt with the same type of cipher or no
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-
-            if (choice1 == "1" || choice1 == "2"){
-                cout << endl;
-                break;}
-
-            else
-                cout << "Please enter a valid choice."<<endl;
-        }
-
-        if (choice1 == "2")
-            return 0 ;
+        
+        checkk = continue_or();
     }
     return 0;
 }
@@ -1445,18 +1283,18 @@ void morse_cipher(string text)
 
 int morse_cipher()
 {
-    string Choice, choice1;
+    ll Choice;
     cout << "\n# ===== Welcome to Morse Cipher ===== #" << endl;
-    while (true)
-    {
+    bool checkk = true;
+    while (checkk){
         // Showing a list for user to choose encryption or decryption
-        cout << "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\n";
-        cout << "Enter Your Choice: ";
-        cin >> Choice;
+        string menu7  = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter your choice : ";
+        vector <string> choices = {"1", "2", "3"};
+        Choice = menu_check(choices, menu7);
 
-        if (Choice == "1"){                         // If he chooses encryption
+        if (Choice == 1){                         // If he chooses encryption
             string message, result = "";
-            cin.ignore(1,'\n');
+            cin.ignore(0,'\n');
 
             // To get the text and key from user
             while (true){
@@ -1477,9 +1315,9 @@ int morse_cipher()
         }
 
 
-            // else if (Choice == "2"){                                // if a user chooses to decrypt
+            // else if (Choice == 2){                                // if a user chooses to decrypt
             //     string result, text = "";
-            //     cin.ignore(1, '\n');
+            //     cin.ignore(0, '\n');
 
             //     while(true){
             //         // Getting an Encrypted message from user
@@ -1499,37 +1337,87 @@ int morse_cipher()
             //     }
             // }
 
-            // Exit of this cipher
-        else if (Choice == "3")
+        else
             return 0;
 
-            // If user entered invalid input
-        else{
-            cout << "Please enter a valid choice."<<endl;
-            continue;
-        }
-
-        // To see if a user wants to encrypt with the same type of cipher or no
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-
-            if (choice1 == "1" || choice1 == "2"){
-                cout << endl;
-                break;}
-
-            else
-                cout << "Please enter a valid choice."<<endl;
-        }
-
-        if (choice1 == "2")
-            return 0 ;
+        // Exit of this cipher
+        checkk = continue_or();
     }
     return 0;
 }
 
 // ======================================================= XOR Cipher ======================================================= //
 
+// int xor_cipher(){
+//     cout << "# ==== Welcome to XOR cipher ==== #" << endl;
+//     string text, text1, key, key1 = "";
+//     ll choice;
+//     bool check = true;
+//     while (check){
+//         string menu9 = "What do you want to do?\n[1] Encryption Text\n[2] Decryption Text\n[3] Exit this cipher\nYour choice : ";
+//         vector <string> choices = {"1", "2", "3"};
+//         choice = menu_check(choices ,menu9);
+//         if(choice == 1){
+//             cout << "Enter the text you want to encrypt :";
+//             getline(cin, text);
+//             for(char i : text){
+//                 if (i != ' ')
+//                     text1 += i;
+//             }
+//             text = text1;
+//             while (true){
+//                 bool alpha = false;
+//                 cout << "Enter the key for Encryption (only letters) : ";
+//                 getline(cin, key);
+//                 for(char i : key){
+//                     if(!isalpha(i)){
+//                         alpha = true;
+//                         break;
+//                     }
+//                 }
+//                 if (!alpha)
+//                     break;
+//                 else
+//                     cout << "please enter a valid key" << endl;
+//             }
+//             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
+//                 key1 += key;
+//             for(int i = 0 ; i < text.length();i++){
+//                 cout << char(key1[i]^text[i]) << endl;
+//             }
+//         }
+//         else if(choice == 2){
+//             cout << "Enter the text you want to decrypt by hexa:";
+//             getline(cin, text);
+//             for(char i : text){
+//                 if (i != ' ')
+//                     text1 += i;
+//             }
+//             text = text1;
+//             while (true){
+//                 bool alpha = false;
+//                 cout << "Enter the key for decryption (only letters) : ";
+//                 getline(cin, key);
+//                 for(char i : key){
+//                     if(!isalpha(i)){
+//                         alpha = true;
+//                         break;
+//                     }
+//                 }
+//                 if (!alpha)
+//                     break;
+//                 else
+//                     cout << "please enter a valid key" << endl;
+//             }
+//             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
+//                 key1 += key;
+//         }
+//         else
+//             return 0;
+//         check = continue_or();
+//     }
+//     return 0;
+// }
 
 
 // ======================================================= Rail Fence Cipher ======================================================= //
@@ -1544,32 +1432,11 @@ string remove_space(string str){
     return result;
 }
 
-// To check that key is a number
-ll check_number (string print){
-    string key;
-    while (true){
-        bool check = true;
-        cout << "Enter the key you want to " << print << " text by : ";
-        cin >> key;
-
-        for (char i : key){
-            if(!isdigit(i) || stoll(key) < 0){
-                check = false;
-                break;}
-        }
-
-        if (check)
-            return stoll(key);
-        else
-            cout << "Please enter a valid number" << endl;
-        cout << endl;
-    }
-}
-
 int rail_fence(){
     // To see if user wants to encrypt or decrypt
     cout << "\n# ===== Welcome to Rail Fence Cipher ===== #" << endl;
-    while(true){
+    bool checkk = true;
+    while(checkk){
 
         // Declaring some variables
         string text;
@@ -1577,25 +1444,9 @@ int rail_fence(){
         ll key, counter = 0, num = 0;
         bool check = false;
 
-        while (true){
-            cout << "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit This Cipher.\nEnter Your choice: ";
-            cin >> choice;
-            while ((cin.fail())|| (choice != 1 && choice != 2 && choice != 3))
-            {
-                cin.clear();                                // Clear the previous input
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input.\n";                 // Print an error message
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> choice;                              // Get a new clone then check it
-            }
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');         // To avoid error in input
-            cout << endl;
-
-            if (choice == 1 ||choice == 2 ||choice == 3)      // Check user not entering another choice
-                break;
-            else
-                cout << "Please enter a valid input !" << endl;
-        }
+        string menu10 = "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit This Cipher.\nEnter Your choice: ";
+        vector <string> choices = {"1", "2", "3"};
+        choice = menu_check(choices ,menu10);
 
         if (choice == 1)     // If he chooses to encrypt
         {
@@ -1603,7 +1454,7 @@ int rail_fence(){
             cout << "Enter sentence you want to encrypt: ";
             getline(cin, text);
             text = remove_space(text);
-            key = check_number("encrypt");
+            key = check_number("Enter the key you want to encrypt by :");
             char arr[key][text.length()];
 
             // To fill the 2D array with points to simplify it
@@ -1649,7 +1500,7 @@ int rail_fence(){
             cout << "Enter sentence you want to decrypt: ";
             getline(cin, text);
             text = remove_space(text);
-            key = check_number("decrypt");
+            key = check_number("Enter the key you want to decrypt text by");
             char arr[key][text.length()];
 
             // To fill the 2D array with points to simplify it
@@ -1703,40 +1554,17 @@ int rail_fence(){
             return 0;
 
         cout << endl;
-
         // To see if user wants to encrype with the same type of cipher or no
-        while (true){
-            cout << "Do you want to continue with same type of cipher?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> choice1;
-            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 ))
-            {
-                cin.clear();                                // Clear the previous input
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid input.\n";                 // Print an error message
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> choice1;                             // Get a new clone then check it
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-            if (choice1 == 1 || choice1 == 2)
-                break;
-
-            else
-                cout << "Please enter a valid choice" << endl;
-        }
-
-        if (choice1 == 2)
-            return 0 ;
+        checkk = continue_or();
     }
 }
-
-
 
 
 // ========================================================================>> Main Program <<======================================================================== //
 
 int main(){
-    int option, option1;
+    int option;
+    string option1;
 
     // A description for user to simplify the program
     cout << "# The Description For User To Simplify The Program:" << endl;
@@ -1750,83 +1578,70 @@ int main(){
     while (true){
 
         // Show the available ciphers for user
-        cout << "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-fence Cipher.\n [11] Exit Program.\nEnter Your choice : ";
-        cin >> option;
-        while ((cin.fail())|| (option != 1 && option != 2 && option != 3 && option != 4 && option != 5 && option != 6 && option != 7 && option != 8 && option != 9 && option != 10 && option != 11))
-        {
-            cin.clear();                        // Clear the previous input
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Please enter a valid choice.\n";               // Print an error message
-            cout << "Please select a valid choice from the previous menu: ";
-            cin >> option;                      // Get a new clone then check it
-        }
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        string menu11 = "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-fence Cipher.\n [11] Exit Program.\nEnter Your choice : ";
+        vector <string> choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
+        option = menu_check(choices ,menu11);
 
+        // Affine Cipher
+        if(option == 1)
+            affine_cipher();
 
-            // Route Cipher
-        if (option == 2)
+        // Route Cipher
+        else if (option == 2)
             route_cipher();
 
+        // Atbash cipher
         else if (option == 2)
             atbash_cipher();
             
-            // Vignere Cipher
-       else if (option == 4)
+        // Vignere Cipher
+        else if (option == 4)
             vignere_cipher();
 
-            // Baconoian Cipher
+        // Baconoian Cipher
         else if (option == 5)
             baconoian_cipher();
 
+        // simple substitution cipher
         else if (option == 6)
             simple_substitution_cipher();
 
-            // Polybius Square Cipher
+        // Polybius Square Cipher
         else if (option == 7)
             polybius_square_cipher();
 
-            // Morse Cipher
+        // Morse Cipher
         else if (option == 8)
             morse_cipher();
 
-            // Rail Fence Cipher
+        // XOR cipher
+        // else if (option == 9)
+        //     XOR_cipher();
+
+        // Rail Fence Cipher
         else if (option == 10)
             rail_fence();
 
-            // Exit Program
+        // Exit Program
         else if (option == 11){
             cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
-            break;
+            return 0;
         }
 
         // To ask user if he wants to continue or not
         while (true){
-            cout << endl;
-            cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your choice: ";
-            cin >> option1;
-            while ((cin.fail())|| (option1 != 1 && option1 != 2))
-            {
-                cin.clear();                                            // Clear the previous input
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Please enter a valid choice.\n";               // Print an error message
-                cout << "Please select a valid choice from the previous menu: ";
-                cin >> option1;                                         // Get a new clone then check it
-            }
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            // To Check option is valid
-            if (option1 == 1 || option1 == 2){
-                cout << endl;
-                break;
-            }
+            cout << "do you want to continue in this cipher?\n[1] Yes\n[2] No\nYour choice is :";
+            getline(cin, option1);
 
-            else                                             // If it is invalid
-                cout << "Please enter a valid option" << endl;
-            cout << "\n";
-        }
+            if(option1 == "1" || option1 == "2")
+                break;
+            else
+                cout << "Please enter a valid input" << endl;
 
         // To Exit program
-        if (option1 == 2){
+        if (option1 == "2"){
             cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
             break;}
+        }
     }
 }
