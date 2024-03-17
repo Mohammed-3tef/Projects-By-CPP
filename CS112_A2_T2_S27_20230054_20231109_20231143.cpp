@@ -268,6 +268,218 @@ int route_cipher()
 
 // ======================================================= Atbash Cipher ======================================================= //
 
+//check if the input has any character except alphabet
+void validity(string &text){
+    while (true){
+        int count = 0;
+        for (int i = 0; i < int(text.size()); i++){
+            if (isalpha(text[i]))
+                count++;
+            else{
+                cout << "Invalid Input."<<endl;
+                cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
+                getline(cin, text);
+            }
+        }
+        if (count == int(text.size())){
+            break;
+        }
+    }
+}
+
+//encrypt messages 
+string encrypt(string &text, int choice){
+    string result = "";
+    validity(text);
+    for (int i = 0; i < int(text.size()); i++){
+
+        //encrypt a message on tne whole letters of alphabet
+        if(choice == 1){
+            //check if the letter is uppercase to encrypt
+            if(isupper(text[i])){
+                result += static_cast<char>(25+130-static_cast<int>(text[i]));
+            }
+
+            //check if the letter is lowercase to encrypt
+            else if(islower(text[i])){
+                result += static_cast<char>(25+194-static_cast<int>(text[i]));
+            }
+        }
+        
+        //encrypt a message on half letters of alphabet
+        else if(choice == 2){
+            //check if the letter is uppercase to encrypt
+            int digit = static_cast<int>(text[i]);
+            if(isupper(text[i])){
+                if(digit <= 77){
+                    result += static_cast<char>(12+130-static_cast<int>(text[i]));
+                }
+                else if(digit > 77){
+                    result += static_cast<char>(12+156-static_cast<int>(text[i]));
+                }
+            }
+
+            //check if the letter is lowercase to encrypt
+            else if(islower(text[i])){
+                if(digit <= 109){
+                    result += static_cast<char>(12+194-static_cast<int>(text[i]));
+                }
+                else if(digit > 109){
+                     result += static_cast<char>(12+220-static_cast<int>(text[i]));
+                }
+            }
+        }
+    }
+    return result;
+}
+
+//decryption messages
+string decrypt(string &text, int choice){
+    string result = "";
+    validity(text);
+    for (int i = 0; i < int(text.size()); i++){
+        //decrypt a message on tne whole letters of alphabet
+        if(choice == 1){
+            //check if the letter is uppercase to decrypt
+            if(isupper(text[i])){
+                result += static_cast<char>(25+130-static_cast<int>(text[i]));
+                }
+
+            //check if the letter is lowercase to decrypt
+            else if(islower(text[i])){
+                result += static_cast<char>(25+194-static_cast<int>(text[i]));
+            }
+        }
+        
+        //decrypt a message on half letters of alphabet
+        else if(choice == 2){
+            //check if the letter is uppercase to decrypt
+            int digit = static_cast<int>(text[i]);
+            if(isupper(text[i])){
+                if(digit <= 77){
+                    result += static_cast<char>(12+130-static_cast<int>(text[i]));
+                }
+                else if(digit > 77){
+                    result += static_cast<char>(12+156-static_cast<int>(text[i]));
+                }
+            }
+
+            //check if the letter is lowercase to decrypt
+            else if(islower(text[i])){
+                if(digit <= 109){
+                    result += static_cast<char>(12+194-static_cast<int>(text[i]));
+                }
+                else if(digit > 109){
+                    result += static_cast<char>(12+220-static_cast<int>(text[i]));
+                }
+            }
+        }
+    }
+    return result;
+}
+
+//main program of Atbash Cipher
+int atbash_cipher(){
+    cout<<"=====Welcome to Atbash Cipher====="<<endl;
+    while(true){
+        //print the menue and check the validity of choice
+        cout << "What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
+        int choice;
+        cin>>choice;
+        while ((cin.fail())||(choice!= 1 && choice!= 2 && choice!=3)){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<< "Invalid input."<<endl;
+            cout<< "Please enter a valid choice: ";
+            cin>>choice;
+        }  
+        //print the menue and check the validity of choice and encrypt a message
+        if(choice == 1){
+            cout << "What do you want to do?\n[1]Encrypt a message on the whole alphabet.\n[2]Encrypt a message on half alphabet.\n[3]Back.\nChoice: ";
+            int choice3;
+            cin>>choice3;
+            while ((cin.fail())||(choice3!= 1 && choice3!= 2 && choice3!=3)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout<< "Invalid input."<<endl;
+                cout<< "Please enter a valid choice: ";
+                cin>>choice3;
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            string text;
+            while (true){
+                if(choice3 == 1 || choice3 == 2){
+                    cout<<"Please enter the message you want to encrypt: ";
+                    getline(cin, text);
+                    cout << "The encrypted message is: "<<encrypt(text, choice3)<<endl;
+                    break;
+                }else if(choice3 == 3){
+                    break;
+                }else{
+                    cout <<"Please enter a valid choice: ";
+                    cin >>choice3;
+                }
+            }
+        }
+        //print the menue and check the validity of choice and decrypt a message
+        else if(choice == 2){
+            cout << "What do you want to do?\n[1]Decrypt a message on the whole alphabet.\n[2]Decrypt a message on half alphabet.\n[3]Back."<< endl;
+            int choice2;
+            cin>>choice2;
+             while ((cin.fail())||(choice2!= 1 && choice2!= 2 && choice2!=3)){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout<< "Invalid input."<<endl;
+                cout<< "Please enter a valid choice: ";
+                cin>>choice2;
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            string text;
+            while (true){
+                if(choice2 == 1 || choice2 == 2){
+                    cout<<"Please enter the message you want to decrypt: ";
+                    getline(cin, text);
+                    cout << "The decrypted message is: "<<decrypt(text, choice2)<<endl;
+                    break;
+                }else if(choice2 == 3){
+                    break;
+                }else{
+                    cout <<"Please enter a valid choice: ";
+                    cin >>choice2;
+                }
+            }
+        }
+        //exit the cipher
+        else if(choice == 3){
+            break;
+        }
+        else{
+            cout <<  "Invalid choice.\n";
+            continue;
+        }
+        // To see if user want to encrype with the same type of cipher or no
+        int choice1;
+        while (true){
+            cout<<"Do you want to continue with same type of cipher?\n[1] Yes\n[2] No\nYour choice: ";
+            cin>>choice1;
+            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 )){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input.\n";
+                cout << "Please select a valid choice from the previous menu: ";
+                cin >> choice1;
+            }
+            if (choice1 == 1 || choice1 == 2)
+                break;
+            
+            else
+                cout << "Please enter a valid choice: ";
+        }
+        if (choice1 == 2)
+            return 0 ;
+    }
+    return 0;
+}
 
 // ======================================================= Vignere Cipher ======================================================= //
 
@@ -701,7 +913,195 @@ int baconoian_cipher()
 
 // ======================================================= Simple Substitution Cipher ======================================================= //
 
+//check if the input has any character except alphabet
+void validity(string &text){
+    while (true){
+        int count = 0;
+        while(text.size() == 0){
+            cout << "Invalid Input."<<endl;
+            cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
+            getline(cin, text);
+        }
 
+        for (int i = 0; i < int(text.size()); i++){
+            if (isalpha(text[i]))
+                count++;
+            else{
+                cout << "Invalid Input."<<endl;
+                cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
+                getline(cin, text);
+            }
+        }
+        if (count == int(text.size())){
+            break;
+        }
+    }
+}
+//check if the input has any character except alphabet and it is 5 digits
+void validity2(string &text){
+    while (true){
+        int count = 0;
+        while(text.size() != 5){
+            cout << "Invalid Input."<<endl;
+            cout << "Please enter the keyword that only contains 5 letters of alphabet: ";
+            getline(cin, text);
+        }
+
+        for (int i = 0; i < int(text.size()); i++){
+            if (isalpha(text[i]))
+                count++;
+            else{
+                cout << "Invalid Input."<<endl;
+                cout << "Please enter the keyword that only contains 5 letters of alphabet: ";
+                getline(cin, text);
+            }
+        }
+        if (count == int(text.size())){
+            break;
+        }
+    }
+}
+
+//encrypt messages 
+string encrypt(string &text, string keyword){
+    string result = "";
+    string text2 = "";
+    string keyword2 = "";
+    deque<char>alphabet;
+    deque<char>key;
+    deque<char>new_alphabet;
+    //convert the message and keyword into uppercase
+    for (int i = 0; i < int(text.size()); i++){
+        text2 += toupper(text[i]);
+    }
+    for (int i = 0; i < int(keyword.size()); i++){
+        keyword2 += toupper(keyword[i]);
+    }
+    //make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
+        alphabet.push_back(static_cast<char>(i));
+    }
+    for (int i = 0; i < int(keyword2.size()); i++){
+        key.push_back(keyword2[i]);
+        new_alphabet.push_back(keyword2[i]);
+    }
+    for (int i = 0; i < int(alphabet.size()); i++) {
+        if (find(key.begin(), key.end(), alphabet[i]) == key.end()) 
+            new_alphabet.push_back(alphabet[i]);
+    }
+    for (int i = 0; i < int(text2.size()); i++) {
+        if (isalpha(text2[i])) 
+            result += new_alphabet[static_cast<int>(text2[i]) - 65];
+    }
+    return result;
+}
+
+//decryption messages
+string decrypt(string &text, string keyword){
+    string result = "";
+    string text2 = "";
+    string keyword2 = "";
+    deque<char>alphabet;
+    deque<char>key;
+    deque<char>new_alphabet;
+    //convert the message and keyword into uppercase
+    for (int i = 0; i < int(text.size()); i++){
+        text2 += toupper(text[i]);
+    }
+    for (int i = 0; i < int(keyword.size()); i++){
+        keyword2 += toupper(keyword[i]);
+    }
+    //make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
+        alphabet.push_back(static_cast<char>(i));
+    }
+    for (int i = 0; i < int(keyword2.size()); i++){
+        key.push_back(keyword2[i]);
+        new_alphabet.push_back(keyword2[i]);
+    }
+    for (int i = 0; i < int(alphabet.size()); i++) {
+        if (find(key.begin(), key.end(), alphabet[i]) == key.end()) 
+            new_alphabet.push_back(alphabet[i]);
+    }
+    for (int i = 0; i < int(text2.size()); i++){
+        for (int j = 0; j < int(new_alphabet.size()); j++){
+            if(text2[i] == new_alphabet[j])
+                result += alphabet[j];
+        }
+    }
+    return result;
+}
+
+//main program of Simple Substitution Cipher
+int simple_substitution_cipher(){
+    cout<<"=====Welcome to Simple Substitution Cipher====="<<endl;
+    while(true){
+        //print the menue and check the validity of choice
+        cout << "What do you want to do?\n[1]Encrypt a message.\n[2]Decrypt a message.\n[3]Exit.\nChoice: ";
+        int choice;
+        cin>>choice;
+        while ((cin.fail())||(choice!= 1 && choice!= 2 && choice!=3)){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout<< "Invalid input."<<endl;
+            cout<< "Please enter a valid choice: ";
+            cin>>choice;
+        }  
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        //get the message and encrypt messages
+        if(choice == 1){
+            string text, keyword;
+            cout<<"Please enter the message you want to encrypt: ";
+            getline(cin, text);
+            validity(text);
+            cout<<"Please enter the keyword: ";
+            getline(cin, keyword);
+            validity2(keyword);
+            cout << "The encrypted message is: "<<encrypt(text, keyword)<<endl;
+        }
+        
+        //get the message and decrypt messages
+        else if(choice == 2){
+            string text, keyword;
+            cout<<"Please enter the message you want to decrypt: ";
+            getline(cin, text);
+            validity(text);
+            cout<<"Please enter the keyword: ";
+            getline(cin, keyword);
+            validity2(keyword);
+            cout << "The decrypted message is: "<<decrypt(text, keyword)<<endl;
+        }
+        //exit the cipher
+        else if(choice == 3){
+            break;
+        }
+        else{
+            cout <<  "Invalid choice.\n";
+            continue;
+        }
+        // To see if user want to encrype with the same type of cipher or no
+        int choice1;
+        while (true){
+            cout<<"Do you want to continue with same type of cipher?\n[1] Yes\n[2] No\nYour choice: ";
+            cin>>choice1;
+            while ((cin.fail())|| (choice1 != 1 && choice1 != 2 )){
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input.\n";
+                cout << "Please select a valid choice from the previous menu: ";
+                cin >> choice1;
+            }
+            if (choice1 == 1 || choice1 == 2)
+                break;
+            
+            else
+                cout << "Please enter a valid choice: ";
+        }
+        if (choice1 == 2)
+            return 0 ;
+    }
+    return 0;
+}
 
 
 // ======================================================= Polybius Square Cipher ======================================================= //
@@ -1259,7 +1659,10 @@ int main(){
             // Route Cipher
         if (option == 2)
             route_cipher();
-        
+
+        else if (option == 2)
+            atbash_cipher();
+            
             // Vignere Cipher
        else if (option == 4)
             vignere_cipher();
@@ -1267,6 +1670,9 @@ int main(){
             // Baconoian Cipher
         else if (option == 5)
             baconoian_cipher();
+
+        else if (option == 5)
+            simple_substitution_cipher();
 
             // Polybius Square Cipher
         else if (option == 7)
