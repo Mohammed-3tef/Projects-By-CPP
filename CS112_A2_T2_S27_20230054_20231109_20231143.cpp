@@ -1694,7 +1694,7 @@ int main(){
     while (true){
 
             // Show the available ciphers for user.
-        string menu11 = "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-Fence Cipher.\n [11] Exit Program.\nEnter Your choice : ";
+        string menu11 = "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-Fence Cipher.\n [11] Exit Program.\nEnter Your Choice : ";
         vector <string> choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         option = menu_check(choices ,menu11);
 
