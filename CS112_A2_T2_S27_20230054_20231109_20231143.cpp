@@ -30,7 +30,7 @@ ll menu_check(vector<string> choices, string menu){
                 return stoll(choice);
             }
         }
-        cout << "Please enter a valid choice." << endl;
+        cout << "Please enter a valid choice." << endl << endl;
     }
 }
 
@@ -67,6 +67,31 @@ ll check_number (string print){
             return stoll(key);
         else
             cout << "Please enter a valid number" << endl;
+    }
+}
+
+//check if the input has any character except alphabet for Atbash, and Simple Substitution
+void validity(string &text){
+    while (true){
+        int count = 0;
+        while(text.size() == 0){
+            cout << "Invalid Input."<<endl;
+            cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
+            getline(cin, text);
+        }
+
+        for (int i = 0; i < int(text.size()); i++){
+            if (isalpha(text[i]))
+                count++;
+            else{
+                cout << "Invalid Input."<<endl;
+                cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
+                getline(cin, text);
+            }
+        }
+        if (count == int(text.size())){
+            break;
+        }
     }
 }
 
@@ -135,7 +160,7 @@ int affine_cipher(){
 // ======================================================= Route Cipher ======================================================= //
 
 // Encryption Process of Route Cipher.
-void encyption(string text){
+void encyption_route(string text){
     string new_text = "", result = "";
     ll key;
     cout << "Enter Your Key: ";
@@ -279,7 +304,7 @@ void encyption(string text){
 }
 
 // Decipher the process of Route Cipher.
-void decryption(string text){
+void decyption_route(string text){
     string new_text = "", result = "";
     ll key;
     cout << "Enter Your Key: ";
@@ -320,7 +345,7 @@ int route_cipher()
 
                 // To check the length of text limit.
                 if (message.size() <= 80){
-                    encyption(message);
+                    encyption_route(message);
                     cout << endl;
                     break;}
 
@@ -342,7 +367,7 @@ int route_cipher()
 
                 // To check that text size is less than 80 chars and decrypt it.
                 if (result.size() <= 80){
-                    decryption(result);
+                    decyption_route(result);
                     cout << endl;
                     break;
                 }
@@ -365,27 +390,8 @@ int route_cipher()
 
 // ======================================================= Atbash Cipher ======================================================= //
 
-//check if the input has any character except alphabet
-void validity(string &text){
-    while (true){
-        int count = 0;
-        for (int i = 0; i < int(text.size()); i++){
-            if (isalpha(text[i]))
-                count++;
-            else{
-                cout << "Invalid Input." << endl;
-                cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
-                getline(cin, text);
-            }
-        }
-        if (count == int(text.size())){
-            break;
-        }
-    }
-}
-
 // Encrypt messages
-string encrypt(string &text, int choice){
+string encrypt_atbash(string &text, int choice){
     string result = "";
     validity(text);
     for (int i = 0; i < int(text.size()); i++){
@@ -431,7 +437,7 @@ string encrypt(string &text, int choice){
 }
 
 // Decryption messages
-string decrypt(string &text, int choice){
+string decrypt_atbash(string &text, int choice){
     string result = "";
     validity(text);
     for (int i = 0; i < int(text.size()); i++){
@@ -497,7 +503,7 @@ int atbash_cipher(){
             if(choice3 == 1 || choice3 == 2){
                 cout << "Please enter the message you want to encrypt: ";
                 getline(cin, text);
-                cout << "The encrypted message is: " << encrypt(text, choice3) << endl;
+                cout << "The encrypted message is: " << encrypt_atbash(text, choice3) << endl;
             }
         }
             // Print the menu and check the validity of choice and decrypt a message
@@ -511,7 +517,7 @@ int atbash_cipher(){
             if(choice2 == 1 || choice2 == 2){
                 cout << "Please enter the message you want to decrypt: ";
                 getline(cin, text);
-                cout << "The decrypted message is: " << decrypt(text, choice2) << endl;
+                cout << "The decrypted message is: " << decrypt_atbash(text, choice2) << endl;
             }
 
         }
@@ -717,7 +723,7 @@ int vignere_cipher()
 // ======================================================= Baconian Cipher ======================================================= //
 
 // Encryption process of Baconian Cipher
-string encryption4(string text)
+string encryption_baconian(string text)
 {
     deque<string>elements;
     string old_result = "";
@@ -756,7 +762,7 @@ string encryption4(string text)
 }
 
 // Decryption process of Baconian Cipher
-string decryption4(string text)
+string decryption_baconian(string text)
 {
     string result ="";
     string text2 = "";
@@ -879,7 +885,7 @@ int baconoian_cipher()
             }
 
             // Print the encrypted message
-            cout << "The Encrypted Message is: " << encryption4(text) << endl;
+            cout << "The Encrypted Message is: " << encryption_baconian(text) << endl;
         }
 
             // Check if the user wants to enter a message to decrypt
@@ -891,7 +897,7 @@ int baconoian_cipher()
             validity1(text);
 
             // Print the decrypted message
-            cout << "The Decrypted Message is: " << decryption4(text) << endl;          // Print the decrypted message
+            cout << "The Decrypted Message is: " << decryption_baconian(text) << endl;          // Print the decrypted message
         }
 
             // Back to the main menu
@@ -903,33 +909,8 @@ int baconoian_cipher()
     }
 }
 
-
 // ======================================================= Simple Substitution Cipher ======================================================= //
 
-// Check if the input has any character except alphabet
-void validity(string &text){
-    while (true){
-        int count = 0;
-        while(text.size() == 0){
-            cout << "Invalid Input."<<endl;
-            cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
-            getline(cin, text);
-        }
-
-        for (int i = 0; i < int(text.size()); i++){
-            if (isalpha(text[i]))
-                count++;
-            else{
-                cout << "Invalid Input."<<endl;
-                cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
-                getline(cin, text);
-            }
-        }
-        if (count == int(text.size())){
-            break;
-        }
-    }
-}
 // Check if the input has any character except alphabet and it is 5 digits
 void validity2(string &text){
     while (true){
@@ -956,7 +937,7 @@ void validity2(string &text){
 }
 
 //encrypt messages
-string encrypt(string &text, string keyword){
+string encrypt_simple_substitution(string &text, string keyword){
     string result = "";
     string text2 = "";
     string keyword2 = "";
@@ -990,7 +971,7 @@ string encrypt(string &text, string keyword){
 }
 
 //decryption messages
-string decrypt(string &text, string keyword){
+string decrypt_simple_substitution(string &text, string keyword){
     string result = "";
     string text2 = "";
     string keyword2 = "";
@@ -1045,7 +1026,7 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The encrypted message is: " << encrypt(text, keyword) << endl;
+            cout << "The encrypted message is: " << encrypt_simple_substitution(text, keyword) << endl;
         }
 
             // Get the message and decrypt messages
@@ -1057,7 +1038,7 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The decrypted message is: " << decrypt(text, keyword) << endl;
+            cout << "The decrypted message is: " << decrypt_simple_substitution(text, keyword) << endl;
         }
             // Exit the cipher
         else if(choice == 3){
@@ -1594,7 +1575,7 @@ int main(){
             route_cipher();
 
             // Atbash cipher
-        else if (option == 2)
+        else if (option == 3)
             atbash_cipher();
 
             // Vignere Cipher
@@ -1629,22 +1610,6 @@ int main(){
         else if (option == 11){
             cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
             return 0;
-        }
-
-        // To ask user if he wants to continue or not
-        while (true){
-            cout << "Do you want to continue in this cipher?\n [1] Yes.\n [2] No.\nEnter Your Choice :";
-            getline(cin, option1);
-
-            if(option1 == "1" || option1 == "2")
-                break;
-            else
-                cout << "Please enter a valid input." << endl;
-
-            // To Exit program
-            if (option1 == "2"){
-                cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
-                break;}
         }
     }
 }
