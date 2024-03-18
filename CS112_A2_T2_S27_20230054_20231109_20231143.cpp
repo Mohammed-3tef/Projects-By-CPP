@@ -104,7 +104,7 @@ int affine_cipher(){
     bool checkk = true;
     while (checkk){
         string menu, text, result = "";
-        cout << "# ===== Welcome to Affine Cipher ===== #" << endl;
+        cout << "\n# ===== Welcome to Affine Cipher ===== #" << endl;
         menu = "What will you do ?\n [1] Encryption Function.\n [2] Decryption Function.\n [3] Exit This Cipher.\nEnter Your Choice : ";
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu);
@@ -483,7 +483,7 @@ string decrypt_atbash(string &text, int choice){
 
 // Main program of Atbash Cipher
 int atbash_cipher(){
-    cout << "# ===== Welcome to Atbash Cipher ===== #" << endl;
+    cout << "\n# ===== Welcome to Atbash Cipher ===== #" << endl;
     bool checkk = true;
     while(checkk){
         // Print the menu and check the validity of choice
@@ -604,7 +604,7 @@ void vignere_decipher(string result){
         cout << "Enter Your Keyword to decrypt the text (80 char Maximum): ";
         getline(cin, key);
         ll count = 0;
-        for (int i = 0; i < key.size() ;i++){
+        for (int i = 0; i < int(key.size()) ;i++){
             if(isalpha(key[i]))
                 count++;
         }
@@ -1008,7 +1008,7 @@ string decrypt_simple_substitution(string &text, string keyword){
 
 // Main program of Simple Substitution Cipher
 int simple_substitution_cipher(){
-    cout << "# ===== Welcome to Simple Substitution Cipher ===== #" << endl;
+    cout << "\n# ===== Welcome to Simple Substitution Cipher ===== #" << endl;
     bool checkk = true;
     while(checkk){
         // Print the menu and check the validity of choice
@@ -1050,7 +1050,6 @@ int simple_substitution_cipher(){
     }
     return 0;
 }
-
 
 // ======================================================= Polybius Square Cipher ======================================================= //
 
@@ -1198,72 +1197,151 @@ int polybius_square_cipher()
 // ======================================================= Morse Cipher ======================================================= //
 
 // Encryption process of Morse Cipher
-void morse_cipher(string text)
+void encryption_morse(string text)
 {
     string result = "";
     for (char i : text)
     {
         i = toupper(i);
-        if(isalpha(i))
+        if(isalpha(i))      //check if the character is alpha
         {
-            if (i == 'A')
-            {result += ".- ";}
-            else if (i == 'B')
-            {result += "-... ";}
-            else if (i == 'C')
-            {result += "-.-. ";}
-            else if (i == 'D')
-            {result += "-.. ";}
-            else if (i == 'E')
-            {result += ". ";}
-            else if (i == 'F')
-            {result += "..-.";}
-            else if (i == 'G')
-            {result += "--. ";}
-            else if (i == 'H')
-            {result += ".... ";}
-            else if (i == 'I')
-            {result += ".. ";}
-            else if (i == 'J')
-            {result += ".--- ";}
-            else if (i == 'K')
-            {result += "-.- ";}
-            else if (i == 'L')
-            {result += ".-.. ";}
-            else if (i == 'M')
-            {result += "-- ";}
-            else if (i == 'N')
-            {result += "-. ";}
-            else if (i == 'O')
-            {result += "--- ";}
-            else if (i == 'P')
-            {result += ".--. ";}
-            else if (i == 'Q')
-            {result += "--.- ";}
-            else if (i == 'R')
-            {result += ".-. ";}
-            else if (i == 'S')
-            {result += "... ";}
-            else if (i == 'T')
-            {result += "- ";}
-            else if (i == 'U')
-            {result += "..- ";}
-            else if (i == 'V')
-            {result += "...- ";}
-            else if (i == 'W')
-            {result += ".-- ";}
-            else if (i == 'X')
-            {result += "-..- ";}
-            else if (i == 'Y')
-            {result += "-.-- ";}
-            else if (i == 'Z')
-            {result += "--.. ";}
+            if (i == 'A'){result += ".- ";}
+            else if (i == 'B'){result += "-... ";}
+            else if (i == 'C'){result += "-.-. ";}
+            else if (i == 'D'){result += "-.. ";}
+            else if (i == 'E'){result += ". ";}
+            else if (i == 'F'){result += "..-.";}
+            else if (i == 'G'){result += "--. ";}
+            else if (i == 'H'){result += ".... ";}
+            else if (i == 'I'){result += ".. ";}
+            else if (i == 'J'){result += ".--- ";}
+            else if (i == 'K'){result += "-.- ";}
+            else if (i == 'L'){result += ".-.. ";}
+            else if (i == 'M'){result += "-- ";}
+            else if (i == 'N'){result += "-. ";}
+            else if (i == 'O'){result += "--- ";}
+            else if (i == 'P'){result += ".--. ";}
+            else if (i == 'Q'){result += "--.- ";}
+            else if (i == 'R'){result += ".-. ";}
+            else if (i == 'S'){result += "... ";}
+            else if (i == 'T'){result += "- ";}
+            else if (i == 'U'){result += "..- ";}
+            else if (i == 'V'){result += "...- ";}
+            else if (i == 'W'){result += ".-- ";}
+            else if (i == 'X'){result += "-..- ";}
+            else if (i == 'Y'){result += "-.-- ";}
+            else if (i == 'Z'){result += "--.. ";}
         }
-        else if (isspace(i))
-        {result += "  ";}
+        else if (isdigit(i)){       //check if the character is digit
+            if (i == '1') {result += ".---- ";}
+            else if (i == '2') {result += "..--- ";}
+            else if (i == '3') {result += "...-- ";}
+            else if (i == '4') {result += "----. ";}
+            else if (i == '5') {result += "..... ";}
+            else if (i == '6') {result += "-.... ";}
+            else if (i == '7') {result += "--... ";}
+            else if (i == '8') {result += "---.. ";}
+            else if (i == '9') {result += "----. ";}
+            else if (i == '0') {result += "----- ";}
+        }
+        else if (isspace(i)){result += "  ";}       //check if the character is space
     }
-    cout << "The Encrypted Message is: " << result;
+    cout << "The Encrypted Message is: " << result << endl;
 }
+
+void morse_decipher(string text)
+{
+    string result = "";
+    deque<string>morse;
+    deque<char>morse2;
+    for (int i = '0'; i <= 'Z'; i++)
+    {
+        if (i == 'A'){morse.push_back(".-");            morse2.push_back('A');}
+        else if (i == 'B') {morse.push_back("-...");    morse2.push_back('B');}
+        else if (i == 'C') {morse.push_back("-.-.");    morse2.push_back('C');}
+        else if (i == 'D') {morse.push_back("-..");     morse2.push_back('D');}
+        else if (i == 'E') {morse.push_back(".");       morse2.push_back('E');}
+        else if (i == 'F') {morse.push_back("..-.");     morse2.push_back('F');}
+        else if (i == 'G') {morse.push_back("--.");     morse2.push_back('G');}
+        else if (i == 'H') {morse.push_back("....");    morse2.push_back('H');}
+        else if (i == 'I') {morse.push_back("..");      morse2.push_back('I');}
+        else if (i == 'J') {morse.push_back(".---");    morse2.push_back('J');}
+        else if (i == 'K') {morse.push_back("-.-");     morse2.push_back('K');}
+        else if (i == 'L') {morse.push_back(".-..");    morse2.push_back('L');}
+        else if (i == 'M') {morse.push_back("--");      morse2.push_back('M');}
+        else if (i == 'N') {morse.push_back("-.");      morse2.push_back('N');}
+        else if (i == 'O') {morse.push_back("---");     morse2.push_back('O');}
+        else if (i == 'P') {morse.push_back(".--.");    morse2.push_back('P');}
+        else if (i == 'Q') {morse.push_back("--.-");    morse2.push_back('Q');}
+        else if (i == 'R') {morse.push_back(".-.");     morse2.push_back('R');}
+        else if (i == 'S') {morse.push_back("...");     morse2.push_back('S');}
+        else if (i == 'T') {morse.push_back("- ");       morse2.push_back('T');}
+        else if (i == 'U') {morse.push_back("..-");     morse2.push_back('U');}
+        else if (i == 'V') {morse.push_back("...-");    morse2.push_back('V');}
+        else if (i == 'W') {morse.push_back(".--");     morse2.push_back('W');}
+        else if (i == 'X') {morse.push_back("-..-");    morse2.push_back('X');}
+        else if (i == 'Y') {morse.push_back("-.--");    morse2.push_back('Y');}
+        else if (i == 'Z') {morse.push_back("--..");    morse2.push_back('Z');}
+        else if (i == '1') {morse.push_back(".----");   morse2.push_back('1');}
+        else if (i == '2') {morse.push_back("..---");   morse2.push_back('2');}
+        else if (i == '3') {morse.push_back("...--");   morse2.push_back('3');}
+        else if (i == '4') {morse.push_back("----.");   morse2.push_back('4');}
+        else if (i == '5') {morse.push_back(".....");   morse2.push_back('5');}
+        else if (i == '6') {morse.push_back("-....");   morse2.push_back('6');}
+        else if (i == '7') {morse.push_back("--...");   morse2.push_back('7');}
+        else if (i == '8') {morse.push_back("---..");   morse2.push_back('8');}
+        else if (i == '9') {morse.push_back("----.");   morse2.push_back('9');}
+        else if (i == '0') {morse.push_back("-----");   morse2.push_back('0');}
+    }
+
+    deque<string>text1;
+    string port = "";
+    for (int i = 0; i < int(text.size()); i++)
+    {
+        if (i == int(text.size()) - 1){
+            port += text[i];
+            text1.push_back(port);
+            break;
+        }
+
+        else if (isspace(text[i]) && isspace(text[i+1]) && isspace(text[i+2])){
+            text1.push_back(port);
+            text1.push_back(" ");
+            port = "";
+            i +=2 ;
+        }
+
+        else if (isspace(text[i]) && isspace(text[i+1])){
+            text1.push_back(port);
+            port = "";
+            i +=1 ;
+        }
+
+        else if (isspace(text[i])){
+            text1.push_back(port);
+            port = "";
+        }
+
+        else {
+            port += text[i];
+        }
+    }
+
+    for (int i = 0; i < int(text1.size()); i++)
+    {
+        int count = 0;
+        for (int j = 0; j < int(morse.size()); j++){
+            if(text1[i] == morse[j]){
+                result += morse2[j];
+                count ++;
+            }
+        }
+        if (count == 0 && text1[i] == " ")
+            result += " ";
+    }
+    cout << "The decrypted message is: "<< result << endl;
+}
+
 
 int morse_cipher()
 {
@@ -1276,50 +1354,53 @@ int morse_cipher()
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu7);
 
-        if (Choice == 1){                         // If he chooses encryption
-            string message, result = "";
+        // If he chooses encryption
+        if (Choice == 1){                         
+            string message;
             cin.ignore(0,'\n');
 
-            // To get the text and key from user
-            while (true){
-                cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
+            // To get the text from user and check the validity of it
+            while (true) {
+                int count = 0;
+                cout << "Enter your text you want to encrypt: ";
                 getline(cin, message);
 
-                // To check the length of text limit
-                if (message.size() <= 80){
-                    cout << endl;
-                    morse_cipher(message);
-                    cout << endl << endl;
-                    break;}
+                for (int i = 0; i < int(message.size()); i++) {
+                    if (!isalpha(message[i]) && !isdigit(message[i]) && !isspace(message[i])) {
+                        cout << "Please enter a valid message." << endl;
+                        break;
+                    }
+                    else {count += 1;}
+                }
 
-                    // If it is more than 80 char
-                else
-                    cout << "The input message should be restricted to 80 characters.\n";
+                if (count == int(message.size())) {break;}
             }
+            encryption_morse(message);
         }
 
+            // if a user chooses to decrypt
+            else if (Choice == 2){                                
+                string message;
+                cin.ignore(0,'\n');
 
-            // else if (Choice == 2){                                // if a user chooses to decrypt
-            //     string result, text = "";
-            //     cin.ignore(0, '\n');
+                // To get the text from user and check the validity of it
+                while(true){
+                    int count = 0;
+                    cout << "Enter your text you want to encrypt: ";
+                    getline(cin, message);
 
-            //     while(true){
-            //         // Getting an Encrypted message from user
-            //         cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
-            //         getline(cin, result);
+                    for (int i = 0; i < int(message.size()); i++) {
+                        if (static_cast<int>(message[i]) != 46 && static_cast<int>(message[i]) != 45 && !isspace(message[i])) {
+                            cout << "Please enter a valid message." << endl;
+                            break;
+                        }
+                        else {count += 1;}
+                    }
 
-            //         // To check that text size is less than 80 chars and decrypt it
-            //         if (result.size() <= 80){
-            //             vignere_decipher(result);
-            //             cout << endl;
-            //             break;
-            //         }
-
-            //         // If it is more than 80 chars
-            //         else
-            //             cout << "The input message should be restricted to 80 characters.\n";
-            //     }
-            // }
+                    if (count == int(message.size())) {break;}
+                }
+                morse_decipher(message);
+            }
 
         else
             return 0;
@@ -1333,7 +1414,7 @@ int morse_cipher()
 // ======================================================= XOR Cipher ======================================================= //
 
 // int xor_cipher(){
-//     cout << "# ==== Welcome to XOR cipher ==== #" << endl;
+//     cout << "\n# ==== Welcome to XOR cipher ==== #" << endl;
 //     string text, text1, key, key1 = "";
 //     ll choice;
 //     bool check = true;
