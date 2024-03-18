@@ -1465,76 +1465,188 @@ int morse_cipher()
 
 // ======================================================= XOR Cipher ======================================================= //
 
-// int xor_cipher(){
-//     cout << "\n# ==== Welcome to XOR cipher ==== #" << endl;
-//     string text, text1, key, key1 = "";
-//     ll choice;
-//     bool check = true;
-//     while (check){
-//         string menu9 = "What do you want to do?\n[1] Encryption Text\n[2] Decryption Text\n[3] Exit this cipher\nYour choice : ";
-//         vector <string> choices = {"1", "2", "3"};
-//         choice = menu_check(choices ,menu9);
-//         if(choice == 1){
-//             cout << "Enter the text you want to encrypt :";
-//             getline(cin, text);
-//             for(char i : text){
-//                 if (i != ' ')
-//                     text1 += i;
-//             }
-//             text = text1;
-//             while (true){
-//                 bool alpha = false;
-//                 cout << "Enter the key for Encryption (only letters) : ";
-//                 getline(cin, key);
-//                 for(char i : key){
-//                     if(!isalpha(i)){
-//                         alpha = true;
-//                         break;
-//                     }
-//                 }
-//                 if (!alpha)
-//                     break;
-//                 else
-//                     cout << "please enter a valid key" << endl;
-//             }
-//             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
-//                 key1 += key;
-//             for(int i = 0 ; i < text.length();i++){
-//                 cout << char(key1[i]^text[i]) << endl;
-//             }
-//         }
-//         else if(choice == 2){
-//             cout << "Enter the text you want to decrypt by hexa:";
-//             getline(cin, text);
-//             for(char i : text){
-//                 if (i != ' ')
-//                     text1 += i;
-//             }
-//             text = text1;
-//             while (true){
-//                 bool alpha = false;
-//                 cout << "Enter the key for decryption (only letters) : ";
-//                 getline(cin, key);
-//                 for(char i : key){
-//                     if(!isalpha(i)){
-//                         alpha = true;
-//                         break;
-//                     }
-//                 }
-//                 if (!alpha)
-//                     break;
-//                 else
-//                     cout << "please enter a valid key" << endl;
-//             }
-//             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
-//                 key1 += key;
-//         }
-//         else
-//             return 0;
-//         check = continue_or();
-//     }
-//     return 0;
-// }
+int hexa_dec(string number){
+    int j = 0,sum = 0;
+    for (int i = number.length() - 1 ; i >= 0 ; i--)
+    {
+        if((number[i]-'0') <= 9)
+            sum += (number[i]-'0')*pow(16,j);
+        else if (toupper(number[i]) == 'A')
+            sum += 10*pow(16,j);
+        else if (toupper(number[i]) == 'B')
+            sum += 11*pow(16,j);
+        else if (toupper(number[i]) == 'C')
+            sum += 12*pow(16,j);
+        else if (toupper(number[i]) == 'D')
+            sum += 13*pow(16,j);
+        else if (toupper(number[i]) == 'E')
+            sum += 14*pow(16,j);
+        else if (toupper(number[i]) == 'F')
+            sum += 15*pow(16,j);
+        j++;
+    }
+    return sum;
+}
+string dec_hex(string number){
+    int num = 0;
+    string result = "";
+    for (int i = stoi(number);i > 0 ; i /= 16)
+    {
+        num = i%16;
+        if (num <= 9)
+            result = to_string(num) + result;
+        else if ( num == 10)
+            result = "A" + result;
+        else if ( num == 11)
+            result = "B" + result;
+        else if ( num == 12)
+            result = "C" + result;
+        else if ( num == 13)
+            result = "D" + result;
+        else if ( num == 14)
+            result = "E" + result;
+        else if ( num == 15)
+            result = "F" + result;
+    }
+    return result;
+}
+
+
+int XOR_cipher(){
+    cout << "# ==== Welcome to XOR cipher ==== #" << endl;
+    string text, text1, key, key1 = "";
+    ll choice;
+    bool check = true;
+
+    while (check){
+        string menu9 = "What do you want to do?\n[1] Encryption Text\n[2] Decryption Text\n[3] Exit this cipher\nYour choice : ",res = "";
+        vector <string> choices = {"1", "2", "3"};
+        choice = menu_check(choices ,menu9);
+        
+        if(choice == 1){
+            cout << "Enter the text you want to encrypt :";
+            getline(cin, text);
+            for(char i : text){
+                if (i != ' ')
+                    text1 += i;
+            }
+            text = text1;
+
+            while (true){
+                bool alpha = false;
+                cout << "Enter the key for Encryption (only letters) : ";
+                getline(cin, key);
+                for(char i : key){
+                    if(!isalpha(i)){
+                        alpha = true;
+                        break;
+                    }
+                }
+                if (!alpha)
+                    break;
+                else
+                    cout << "please enter a valid key" << endl;
+            }
+
+            for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
+                key1 += key;
+
+            for(int i = 0 ; i < text.length();i++){
+                res += char(key1[i]^text[i]);
+            }
+
+            vector <string> result;
+            for(char i : res){
+                string sum = dec_hex(to_string(int(i)));
+                result.push_back(sum);
+            }
+
+            cout << "The cipher of your text : " << res<<endl;
+            cout << "The Hexa cipher : ";
+            for(string i : result)
+                cout << i << ' ';
+            cout<<endl;
+        }
+
+        else if(choice == 2){
+
+            vector <string> arr;
+            while(true){
+                bool check = false;
+                cout << "Enter the text you want to decrypt by hexa (composed of 2 digit hexadecimal separated by space):";
+                getline(cin, text);
+                for(char i : text){
+                    if(!isspace(i)&&!isdigit(i)&&toupper(i) != 'A'&&toupper(i) != 'B'&&toupper(i) != 'C'&&toupper(i) != 'D'&&toupper(i) != 'E'&&toupper(i) != 'F'){
+                        check = true;
+                        break;
+                    }
+                }
+
+                if(check){
+                    cout << "Please enter a valid hexadecimal number"<<endl;
+                    continue;
+                }
+                cin.ignore(0, '\n');
+
+                string str = "";
+                for(int i = 0 ; i < text.length(); i++){
+                    if(isspace(text[i]) && !isspace(text[i-1])){
+                        arr.push_back(str);
+                        str = "";
+                        continue;
+                    }
+                    else if(isspace(text[i]) && isspace(text[i-1]))
+                        continue;
+                    str += text[i];
+                }
+                arr.push_back(str);
+
+                bool check1 = true;
+                for(string i : arr){
+                    if(i.length() > 2){
+                        check1 = false;
+                        break;
+                    }
+                }
+
+                if (check1)
+                    break;
+                cout << "Please enter a valid hexadecimal composed of 2 digits" << endl;
+                arr.clear();
+            }
+
+            while (true){
+                bool alpha = false;
+                cout << "Enter the key for decryption (only letters) : ";
+                getline(cin, key);
+                for(char i : key){
+                    if(!isalpha(i)){
+                        alpha = true;
+                        break;
+                    }
+                }
+                if (!alpha)
+                    break;
+                else
+                    cout << "please enter a valid key" << endl;
+            }
+
+            for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
+                key1 += key;
+
+            for(int i = 0 ; i < arr.size();i++){
+                res += char(key1[i]^char(hexa_dec(arr[i])));
+            }
+
+            cout<<"The original text is "<<res<<endl;
+        }
+        else
+            return 0;
+        check = continue_or();
+    }
+    return 0;
+}
+
 
 
 // ======================================================= Rail Fence Cipher ======================================================= //
@@ -1731,8 +1843,8 @@ int main(){
             morse_cipher();
 
             // XOR Cipher.
-            // else if (option == 9)
-            //     XOR_cipher();
+        else if (option == 9)
+            XOR_cipher();
 
             // Rail-Fence Cipher.
         else if (option == 10)
