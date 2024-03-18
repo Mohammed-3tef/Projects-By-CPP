@@ -70,12 +70,12 @@ ll check_number (string print){
     }
 }
 
-//check if the input has any character except alphabet for Atbash, and Simple Substitution
+// Check if the input has any character except alphabet for Atbash, and Simple Substitution
 void validity(string &text){
     while (true){
         int count = 0;
         while(text.size() == 0){
-            cout << "Invalid Input."<<endl;
+            cout << "Invalid Input." << endl;
             cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
             getline(cin, text);
         }
@@ -84,7 +84,7 @@ void validity(string &text){
             if (isalpha(text[i]))
                 count++;
             else{
-                cout << "Invalid Input."<<endl;
+                cout << "Invalid Input." << endl;
                 cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
                 getline(cin, text);
             }
@@ -109,7 +109,7 @@ int affine_cipher(){
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu);
 
-            // Encryption Process of Affine Cipher.
+        // Encryption Process of Affine Cipher.
         if (choice == 1){
             cout << "Enter the Text you want to encrypt : ";
             getline(cin, text);
@@ -123,7 +123,7 @@ int affine_cipher(){
                 else
                     result += i;
             }
-            cout << "The encryption of your text : " << result << endl;
+            cout << "The Encryption of your text : " << result << endl;
         }
 
             // Decryption Process of Affine Cipher.
@@ -144,7 +144,7 @@ int affine_cipher(){
                 else
                     result += i;
             }
-            cout << "The decryption of your message: " <<result << endl;
+            cout << "The Decryption of your message: " <<result << endl;
         }
 
         else if(choice == 3){
@@ -181,7 +181,7 @@ void encyption_route(string text){
             matrix[i] = new_text[i];
         }
 
-        //2D Matrix
+        // 2D Matrix
         int m = 0;
         for (int row = 0; row < num; row++){
             for (int col = 0; col < key; col++){
@@ -356,7 +356,7 @@ int route_cipher()
         }
 
 
-        else if (Choice == 2){                                // if a user chooses to decrypt.
+        else if (Choice == 2){                                // If a user chooses to decrypt.
             string result, text = "";
             cin.ignore(0, '\n');
 
@@ -916,7 +916,7 @@ void validity2(string &text){
     while (true){
         int count = 0;
         while(text.size() != 5){
-            cout << "Invalid Input."<<endl;
+            cout << "Invalid Input." << endl;
             cout << "Please enter the keyword that only contains 5 letters of alphabet: ";
             getline(cin, text);
         }
@@ -936,7 +936,7 @@ void validity2(string &text){
     }
 }
 
-//encrypt messages
+// Encrypt messages
 string encrypt_simple_substitution(string &text, string keyword){
     string result = "";
     string text2 = "";
@@ -944,14 +944,14 @@ string encrypt_simple_substitution(string &text, string keyword){
     deque<char>alphabet;
     deque<char>key;
     deque<char>new_alphabet;
-    //convert the message and keyword into uppercase
+    // Convert the message and keyword into uppercase
     for (int i = 0; i < int(text.size()); i++){
         text2 += toupper(text[i]);
     }
     for (int i = 0; i < int(keyword.size()); i++){
         keyword2 += toupper(keyword[i]);
     }
-    //make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
         alphabet.push_back(static_cast<char>(i));
     }
@@ -970,7 +970,7 @@ string encrypt_simple_substitution(string &text, string keyword){
     return result;
 }
 
-//decryption messages
+// Decryption messages
 string decrypt_simple_substitution(string &text, string keyword){
     string result = "";
     string text2 = "";
@@ -978,14 +978,14 @@ string decrypt_simple_substitution(string &text, string keyword){
     deque<char>alphabet;
     deque<char>key;
     deque<char>new_alphabet;
-    //convert the message and keyword into uppercase
+    // Convert the message and keyword into uppercase
     for (int i = 0; i < int(text.size()); i++){
         text2 += toupper(text[i]);
     }
     for (int i = 0; i < int(keyword.size()); i++){
         keyword2 += toupper(keyword[i]);
     }
-    //make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
         alphabet.push_back(static_cast<char>(i));
     }
@@ -1026,7 +1026,7 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The encrypted message is: " << encrypt_simple_substitution(text, keyword) << endl;
+            cout << "The Encrypted Message is: " << encrypt_simple_substitution(text, keyword) << endl;
         }
 
             // Get the message and decrypt messages
@@ -1038,14 +1038,14 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The decrypted message is: " << decrypt_simple_substitution(text, keyword) << endl;
+            cout << "The Decrypted Message is: " << decrypt_simple_substitution(text, keyword) << endl;
         }
             // Exit the cipher
         else if(choice == 3){
             break;
         }
 
-        // To see if user wants to encrype with the same type of cipher or no
+            // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
     return 0;
@@ -1232,7 +1232,7 @@ void encryption_morse(string text)
             else if (i == 'Y'){result += "-.-- ";}
             else if (i == 'Z'){result += "--.. ";}
         }
-        else if (isdigit(i)){       //check if the character is digit
+        else if (isdigit(i)){       // Check if the character is a digit
             if (i == '1') {result += ".---- ";}
             else if (i == '2') {result += "..--- ";}
             else if (i == '3') {result += "...-- ";}
@@ -1244,7 +1244,7 @@ void encryption_morse(string text)
             else if (i == '9') {result += "----. ";}
             else if (i == '0') {result += "----- ";}
         }
-        else if (isspace(i)){result += "  ";}       //check if the character is space
+        else if (isspace(i)){result += "  ";}       // Check if the character is space
     }
     cout << "The Encrypted Message is: " << result << endl;
 }
@@ -1275,7 +1275,7 @@ void morse_decipher(string text)
         else if (i == 'Q') {morse.push_back("--.-");    morse2.push_back('Q');}
         else if (i == 'R') {morse.push_back(".-.");     morse2.push_back('R');}
         else if (i == 'S') {morse.push_back("...");     morse2.push_back('S');}
-        else if (i == 'T') {morse.push_back("- ");       morse2.push_back('T');}
+        else if (i == 'T') {morse.push_back("-");       morse2.push_back('T');}
         else if (i == 'U') {morse.push_back("..-");     morse2.push_back('U');}
         else if (i == 'V') {morse.push_back("...-");    morse2.push_back('V');}
         else if (i == 'W') {morse.push_back(".--");     morse2.push_back('W');}
@@ -1339,7 +1339,7 @@ void morse_decipher(string text)
         if (count == 0 && text1[i] == " ")
             result += " ";
     }
-    cout << "The decrypted message is: "<< result << endl;
+    cout << "The Decrypted Message is: "<< result << endl;
 }
 
 
@@ -1355,11 +1355,11 @@ int morse_cipher()
         Choice = menu_check(choices, menu7);
 
         // If he chooses encryption
-        if (Choice == 1){                         
+        if (Choice == 1){
             string message;
             cin.ignore(0,'\n');
 
-            // To get the text from user and check the validity of it
+            // To get the text from the user and check the validity of it
             while (true) {
                 int count = 0;
                 cout << "Enter your text you want to encrypt: ";
@@ -1376,31 +1376,33 @@ int morse_cipher()
                 if (count == int(message.size())) {break;}
             }
             encryption_morse(message);
+            cout << endl;
         }
 
-            // if a user chooses to decrypt
-            else if (Choice == 2){                                
-                string message;
-                cin.ignore(0,'\n');
+            // If a user chooses to decrypt
+        else if (Choice == 2){
+            string message;
+            cin.ignore(0,'\n');
 
-                // To get the text from user and check the validity of it
-                while(true){
-                    int count = 0;
-                    cout << "Enter your text you want to encrypt: ";
-                    getline(cin, message);
+            // To get the text from the user and check the validity of it
+            while(true){
+                int count = 0;
+                cout << "Enter your text you want to encrypt: ";
+                getline(cin, message);
 
-                    for (int i = 0; i < int(message.size()); i++) {
-                        if (static_cast<int>(message[i]) != 46 && static_cast<int>(message[i]) != 45 && !isspace(message[i])) {
-                            cout << "Please enter a valid message." << endl;
-                            break;
-                        }
-                        else {count += 1;}
+                for (int i = 0; i < int(message.size()); i++) {
+                    if (static_cast<int>(message[i]) != 46 && static_cast<int>(message[i]) != 45 && !isspace(message[i])) {
+                        cout << "Please enter a valid message." << endl;
+                        break;
                     }
-
-                    if (count == int(message.size())) {break;}
+                    else {count += 1;}
                 }
-                morse_decipher(message);
+
+                if (count == int(message.size())) {break;}
             }
+            morse_decipher(message);
+            cout << endl;
+        }
 
         else
             return 0;
@@ -1608,7 +1610,7 @@ int rail_fence(){
             for (int i = 0 ; i < text.length() ; i++){
                 for (int j = 0 ; j < key; j++ ){
                     if(arr[j][i] != '.')
-                        cout<<arr[j][i];
+                        cout <<arr[j][i];
                 }
             }
             cout << endl;
@@ -1647,7 +1649,7 @@ int main(){
         vector <string> choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         option = menu_check(choices ,menu11);
 
-            // Affine Cipher
+        // Affine Cipher
         if(option == 1)
             affine_cipher();
 
