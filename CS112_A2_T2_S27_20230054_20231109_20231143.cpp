@@ -110,7 +110,7 @@ int affine_cipher(){
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu);
 
-            // Encryption Process of Affine Cipher.
+        // Encryption Process of Affine Cipher.
         if (choice == 1){
             cout << "Enter the Text you want to encrypt : ";
             getline(cin, text);
@@ -327,7 +327,7 @@ int route_cipher()
     bool checkk = true;
     while (checkk)
     {
-            // Showing a list for user to choose encryption or decryption.
+        // Showing a list for user to choose encryption or decryption.
         string menu1 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter Your Choice: ";
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu1);
@@ -337,12 +337,12 @@ int route_cipher()
             string message, result = "";
             cin.ignore(0,'\n');
 
-                // To get the text and key from the user.
+            // To get the text and key from the user.
             while (true){
                 cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
                 getline(cin, message);
 
-                    // To check the length of text limit.
+                // To check the length of text limit.
                 if (message.size() <= 80){
                     encyption_route(message);
                     cout << endl;
@@ -360,11 +360,11 @@ int route_cipher()
             cin.ignore(0, '\n');
 
             while(true){
-                    // Getting an Encrypted message from user.
+                // Getting an Encrypted message from user.
                 cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
                 getline(cin, result);
 
-                    // To check that text size is less than 80 chars and decrypt it.
+                // To check that text size is less than 80 chars and decrypt it.
                 if (result.size() <= 80){
                     decyption_route(result);
                     cout << endl;
@@ -381,7 +381,7 @@ int route_cipher()
         else if (Choice == 3)
             return 0;
 
-            // To see if a user wants to encrypt with the same type of cipher or no.
+        // To see if a user wants to encrypt with the same type of cipher or no.
         checkk = continue_or();
     }
     return 0;
@@ -395,9 +395,9 @@ string encrypt_atbash(string &text, int choice){
     validity(text);
     for (int i = 0; i < int(text.size()); i++){
 
-            // Encrypt a message on tne whole letters of alphabet
+        // Encrypt a message on tne whole letters of alphabet
         if(choice == 1){
-                // Check if the letter is uppercase to encrypt
+            // Check if the letter is uppercase to encrypt
             if(isupper(text[i])){
                 result += static_cast<char>(25+130-static_cast<int>(text[i]));
             }
@@ -410,7 +410,7 @@ string encrypt_atbash(string &text, int choice){
 
             // Encrypt a message on half-letters of the alphabet
         else if(choice == 2){
-                // Check if the letter is uppercase to encrypt
+            // Check if the letter is uppercase to encrypt
             int digit = static_cast<int>(text[i]);
             if(isupper(text[i])){
                 if(digit <= 77){
@@ -485,13 +485,13 @@ int atbash_cipher(){
     cout << "\n# ===== Welcome to Atbash Cipher ===== #" << endl;
     bool checkk = true;
     while(checkk){
-            // Print the menu and check the validity of choice
+        // Print the menu and check the validity of choice
         string menu2 ="What do you want to do?\n [1]Encrypt a message.\n [2]Decrypt a message.\n [3]Exit This Cipher.\nEnter Your Choice: ";
         ll choice;
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu2);
 
-            // Print the menu and check the validity of choice and encrypt a message
+        // Print the menu and check the validity of choice and encrypt a message
         if(choice == 1){
             string menu = "What do you want to do?\n [1]Encrypt a message on the whole alphabet.\n [2]Encrypt a message on half alphabet.\n [3]Back.\nEnter Your Choice: ";
             int choice3;
@@ -525,7 +525,7 @@ int atbash_cipher(){
             break;
         }
 
-            // To see if user wants to encrype with the same type of cipher or no
+        // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
     return 0;
@@ -539,10 +539,10 @@ void vignere_cipher(string text){
     char character;
     cout << "";
 
-        // To keep code running
+    // To keep code running
     while (true){
 
-            // To get the key from user to encrypt it with
+        // To get the key from user to encrypt it with
         cout << "Enter Your Keyword to encrypt message by it (8 chars Maximum): ";
         getline(cin, key);
         ll count = 0;
@@ -551,24 +551,24 @@ void vignere_cipher(string text){
                 count++;
             }
         }
-            // If key is valid
+        // If key is valid
         if (key.size() <= 8 && count == key.size()){
             long long num = text.size();
             int i = 0;
             string repeated_keyword = "";
 
-                // To repeat the key to encrypt the whole text
+            // To repeat the key to encrypt the whole text
             for (int j = 0; j < num; j++){
                 repeated_keyword += key;
                 key = repeated_keyword.substr(0, num);
             }
 
-                // Encryption process
+            // Encryption process
             while (i < text.length()){
                 text[i] = toupper(text[i]);
                 key[i] = toupper(key[i]);
 
-                    // To check that char is alphabetic not any other chars
+                // To check that char is alphabetic not any other chars
                 if (isalpha(text[i])){
                     int sum = int(text[i]) + int(key[i]);
                     int rem = sum % 26;
@@ -597,7 +597,7 @@ void vignere_decipher(string result){
     int sum = 0;
     char character;
 
-        // To keep code running
+    // To keep code running
     while (true){
         // To get key from user to decrypt the message
         cout << "Enter Your Keyword to decrypt the text (80 char Maximum): ";
@@ -608,23 +608,23 @@ void vignere_decipher(string result){
                 count++;
         }
 
-            // To check that size of key is less than 8
+        // To check that size of key is less than 8
         if (key.size() <= 8 && count == key.size()){
             long long num = result.size();
             int i = 0;
             string repeated_keyword = "";
 
-                // To repeat the key to encrypt the whole text
+            // To repeat the key to encrypt the whole text
             for (int j = 0; j < num; j++)
                 repeated_keyword += key;
             key = repeated_keyword.substr(0, num);
 
-                // Decryption process
+            // Decryption process
             while (i < result.length()){
                 result[i] = toupper(result[i]);
                 key[i] = toupper(key[i]);
 
-                    // If the char is alphabetic
+                // If the char is alphabetic
                 if (isalpha(result[i])){
                     int rem = int(result[i]) - 65;
                     for (int h =0 ; h < 243 ;h++){
@@ -660,7 +660,7 @@ int vignere_cipher()
     cout << "\n# ===== Welcome to Vignere Cipher ===== #" << endl;
     while (checkk)
     {
-            // Showing a list for user to choose encryption or decryption
+        // Showing a list for user to choose encryption or decryption
         string menu8 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This Cipher.\n";
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu8);
@@ -670,12 +670,12 @@ int vignere_cipher()
             string message, result = "";
             cin.ignore(0,'\n');
 
-                // To get the text and key from user
+            // To get the text and key from user
             while (true){
                 cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
                 getline(cin, message);
 
-                    // To check the length of text limit
+                // To check the length of text limit
                 if (message.size() <= 80){
                     vignere_cipher(message);
                     cout << endl;
@@ -693,11 +693,11 @@ int vignere_cipher()
             cin.ignore(0, '\n');
 
             while(true){
-                    // Getting an Encrypted message from user
+                // Getting an Encrypted message from user
                 cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
                 getline(cin, result);
 
-                    // To check that text size is less than 80 chars and decrypt it
+                // To check that text size is less than 80 chars and decrypt it
                 if (result.size() <= 80){
                     vignere_decipher(result);
                     cout << endl;
@@ -714,7 +714,7 @@ int vignere_cipher()
         else if (Choice == 3)
             return 0;
 
-            // To see if a user wants to encrypt with the same type of cipher or no
+        // To see if a user wants to encrypt with the same type of cipher or no
         checkk = continue_or();
     }
     return 0;
@@ -729,7 +729,7 @@ string encryption_baconian(string text)
     string old_result = "";
     string result ="";
 
-        // Make a deque that contain binary conversion to elements from A to Z
+    // Make a deque that contain binary conversion to elements from A to Z
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++)
     {
         int digit = 0;
@@ -740,7 +740,7 @@ string encryption_baconian(string text)
         elements.push_back(digit2);
     }
 
-        // Convert all characters into uppercase and add the opposite index to each character in elements deque from A to Z to old_result
+    // Convert all characters into uppercase and add the opposite index to each character in elements deque from A to Z to old_result
     for (int i = 0; i < int(text.size()); i++)
     {
         int digit = 0;
@@ -750,7 +750,7 @@ string encryption_baconian(string text)
         old_result += elements[digit];
     }
 
-        // Convert every '1' to b and every '0' to a then add it to result
+    // Convert every '1' to b and every '0' to a then add it to result
     for (int i = 0; i < int(old_result.size()); i++)
     {
         if (old_result[i] == '1')
@@ -767,7 +767,7 @@ string decryption_baconian(string text)
     string result ="";
     string text2 = "";
 
-        // Convert every (A or a) into 0 and every (B or b) into 1 and add this to text2
+    // Convert every (A or a) into 0 and every (B or b) into 1 and add this to text2
     for (int i = 0; i < int(text.size()); i++)
     {
         if (text[i] == 'A' ||text[i] == 'a' )
@@ -776,7 +776,7 @@ string decryption_baconian(string text)
             text2 += '1';
     }
 
-        // Check about the existence of these unknown strings and ignore it
+    // Check about the existence of these unknown strings and ignore it
     deque<int>numbers;
     for (int i = 0; i < int(text2.size()); i++)
     {
@@ -803,7 +803,7 @@ string decryption_baconian(string text)
             continue;
     }
 
-        // Check if every index in the deque has a value and add it to the result
+    // Check if every index in the deque has a value and add it to the result
     for (int j = 0; j < int(numbers.size()); j++)
     {
         for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++)
@@ -846,7 +846,7 @@ string validity1(string &text)
 // Main Program of Baconoian Cipher.
 int baconoian_cipher()
 {
-        // To see if user wants to encrypt or decrypt
+    // To see if user wants to encrypt or decrypt
     cout << "\n# ===== Welcome to Baconian Cipher ===== #" << endl;
     bool checkk = true;
     while(checkk)
@@ -856,14 +856,14 @@ int baconoian_cipher()
         vector <string> choices = {"1", "2", "3"};
         main4 = menu_check(choices, menu3);
 
-            // Check if the user wants to enter a message to encrypt
+        // Check if the user wants to enter a message to encrypt
         if (main4 == 1)
         {
             string text;
             cout << "Please enter the message to encrypt that only contains letters of alphabet: ";
             getline(cin, text);
 
-                // Check if the input has any character except alphabet
+            // Check if the input has any character except alphabet
             while (true)
             {
                 bool flag = false;
@@ -885,7 +885,7 @@ int baconoian_cipher()
                 }
             }
 
-                // Print the encrypted message
+            // Print the encrypted message
             cout << "The Encrypted Message is: " << encryption_baconian(text) << endl;
         }
 
@@ -897,7 +897,7 @@ int baconoian_cipher()
             getline(cin, text);
             validity1(text);
 
-                // Print the decrypted message
+            // Print the decrypted message
             cout << "The Decrypted Message is: " << decryption_baconian(text) << endl;
         }
 
@@ -905,7 +905,7 @@ int baconoian_cipher()
         else if (main4 == 3)
             break;
 
-            // To see if user wants to encrype with the same type of cipher or no
+        // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
 }
@@ -945,14 +945,14 @@ string encrypt_simple_substitution(string &text, string keyword){
     deque<char>alphabet;
     deque<char>key;
     deque<char>new_alphabet;
-        // Convert the message and keyword into uppercase
+    // Convert the message and keyword into uppercase
     for (int i = 0; i < int(text.size()); i++){
         text2 += toupper(text[i]);
     }
     for (int i = 0; i < int(keyword.size()); i++){
         keyword2 += toupper(keyword[i]);
     }
-        // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
         alphabet.push_back(static_cast<char>(i));
     }
@@ -979,14 +979,14 @@ string decrypt_simple_substitution(string &text, string keyword){
     deque<char>alphabet;
     deque<char>key;
     deque<char>new_alphabet;
-        // Convert the message and keyword into uppercase
+    // Convert the message and keyword into uppercase
     for (int i = 0; i < int(text.size()); i++){
         text2 += toupper(text[i]);
     }
     for (int i = 0; i < int(keyword.size()); i++){
         keyword2 += toupper(keyword[i]);
     }
-        // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
+    // Make a list for alphabetic letters and add keyword and rest of alphabetic letters to it
     for (int i = static_cast<int>('A'); i <= static_cast<int>('Z'); i++){
         alphabet.push_back(static_cast<char>(i));
     }
@@ -1012,13 +1012,13 @@ int simple_substitution_cipher(){
     cout << "\n# ===== Welcome to Simple Substitution Cipher ===== #" << endl;
     bool checkk = true;
     while(checkk){
-            // Print the menu and check the validity of choice
+        // Print the menu and check the validity of choice
         string menu4 = "What do you want to do?\n [1]Encrypt a message.\n [2]Decrypt a message.\n [3]Exit This Cipher.\nEnter Your Choice: ";
         ll choice;
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu4);
 
-            // Get the message and encrypt messages
+        // Get the message and encrypt messages
         if(choice == 1){
             string text, keyword;
             cout << "Please enter the message you want to encrypt: ";
@@ -1046,7 +1046,7 @@ int simple_substitution_cipher(){
             break;
         }
 
-            // To see if user wants to encrype with the same type of cipher or no
+        // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
     return 0;
@@ -1190,16 +1190,16 @@ int Polybius_Square_cipher()
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu5);
 
-        if (Choice == 1){                         // If he chooses encryption
+        if (Choice == 1){                                   // If he chooses encryption
             string message, result = "";
             cin.ignore(0,'\n');
 
-                // To get the text and key from user
+            // To get the text and key from user
             while (true){
                 cout << "Enter Your Text you want to encrypt (80 char is max limit): ";
                 getline(cin, message);
 
-                    // To check the length of text limit
+                // To check the length of text limit
                 if (message.size() <= 80){
                     cout << endl;
                     polybius_square_cipher(message);
@@ -1212,27 +1212,27 @@ int Polybius_Square_cipher()
             }
         }
 
-             else if (Choice == 2){                                // If the user chooses to decrypt
-                 string result, text = "";
-                 cin.ignore(0, '\n');
+        else if (Choice == 2){                                // If the user chooses to decrypt
+            string result, text = "";
+            cin.ignore(0, '\n');
 
-                 while(true){
-                     // Getting an Encrypted message from user
-                     cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
-                     getline(cin, result);
+            while(true){
+                // Getting an Encrypted message from user
+                cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
+                getline(cin, result);
 
-                     // To check that text size is less than 80 chars and decrypt it
-                     if (result.size() <= 80){
-                         polybius_square_decipher(result);
-                         cout << endl;
-                         break;
-                     }
+                // To check that text size is less than 80 chars and decrypt it
+                if (result.size() <= 80){
+                    polybius_square_decipher(result);
+                    cout << endl;
+                    break;
+                }
 
-                     // If it is more than 80 chars
-                     else
-                         cout << "The input message should be restricted to 80 characters.\n";
-                 }
-             }
+                    // If it is more than 80 chars
+                else
+                    cout << "The input message should be restricted to 80 characters.\n";
+            }
+        }
 
             // Exit of this cipher
         else if (Choice == 3)
@@ -1463,30 +1463,33 @@ int morse_cipher()
     return 0;
 }
 
-// ======================================================= XOR Cipher ======================================================= //
+// ======================================================== XOR Cipher ======================================================== //
 
+// Encryption the process of XOR Cipher.
 int hexa_dec(string number){
     int j = 0,sum = 0;
     for (int i = number.length() - 1 ; i >= 0 ; i--)
     {
         if((number[i]-'0') <= 9)
-            sum += (number[i]-'0')*pow(16,j);
+            sum += (number[i]-'0') * pow(16,j);
         else if (toupper(number[i]) == 'A')
-            sum += 10*pow(16,j);
+            sum += 10 * pow(16,j);
         else if (toupper(number[i]) == 'B')
-            sum += 11*pow(16,j);
+            sum += 11 * pow(16,j);
         else if (toupper(number[i]) == 'C')
-            sum += 12*pow(16,j);
+            sum += 12 * pow(16,j);
         else if (toupper(number[i]) == 'D')
-            sum += 13*pow(16,j);
+            sum += 13 * pow(16,j);
         else if (toupper(number[i]) == 'E')
-            sum += 14*pow(16,j);
+            sum += 14 * pow(16,j);
         else if (toupper(number[i]) == 'F')
-            sum += 15*pow(16,j);
+            sum += 15 * pow(16,j);
         j++;
     }
     return sum;
 }
+
+// Decryption the process of XOR Cipher.
 string dec_hex(string number){
     int num = 0;
     string result = "";
@@ -1511,18 +1514,18 @@ string dec_hex(string number){
     return result;
 }
 
-
+// Main Program of XOR Cipher.
 int XOR_cipher(){
-    cout << "# ==== Welcome to XOR cipher ==== #" << endl;
+    cout << "# ===== Welcome to XOR Cipher ===== #" << endl;
     string text, text1, key, key1 = "";
     ll choice;
     bool check = true;
 
     while (check){
-        string menu9 = "What do you want to do?\n[1] Encryption Text\n[2] Decryption Text\n[3] Exit this cipher\nYour choice : ",res = "";
+        string menu9 = "What do you want to do?\n [1] Encryption Text.\n [2] Decryption Text.\n [3] Exit This Cipher.\nEnter Your Choice : ", res = "";
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices ,menu9);
-        
+
         if(choice == 1){
             cout << "Enter the text you want to encrypt :";
             getline(cin, text);
@@ -1534,7 +1537,7 @@ int XOR_cipher(){
 
             while (true){
                 bool alpha = false;
-                cout << "Enter the key for Encryption (only letters) : ";
+                cout << "Enter the key for Encryption (Only Letters) : ";
                 getline(cin, key);
                 for(char i : key){
                     if(!isalpha(i)){
@@ -1545,7 +1548,7 @@ int XOR_cipher(){
                 if (!alpha)
                     break;
                 else
-                    cout << "please enter a valid key" << endl;
+                    cout << "Please enter a valid key." << endl;
             }
 
             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
@@ -1561,11 +1564,11 @@ int XOR_cipher(){
                 result.push_back(sum);
             }
 
-            cout << "The cipher of your text : " << res<<endl;
-            cout << "The Hexa cipher : ";
+            cout << "The cipher of your text : " << res << endl;
+            cout << "The Hexa Cipher : ";
             for(string i : result)
                 cout << i << ' ';
-            cout<<endl;
+            cout << endl;
         }
 
         else if(choice == 2){
@@ -1583,7 +1586,7 @@ int XOR_cipher(){
                 }
 
                 if(check){
-                    cout << "Please enter a valid hexadecimal number"<<endl;
+                    cout << "Please enter a valid hexadecimal number." << endl;
                     continue;
                 }
                 cin.ignore(0, '\n');
@@ -1628,7 +1631,7 @@ int XOR_cipher(){
                 if (!alpha)
                     break;
                 else
-                    cout << "please enter a valid key" << endl;
+                    cout << "Please enter a valid key." << endl;
             }
 
             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
@@ -1638,7 +1641,7 @@ int XOR_cipher(){
                 res += char(key1[i]^char(hexa_dec(arr[i])));
             }
 
-            cout<<"The original text is "<<res<<endl;
+            cout << "The Original Message is " << res << endl;
         }
         else
             return 0;
@@ -1646,8 +1649,6 @@ int XOR_cipher(){
     }
     return 0;
 }
-
-
 
 // ======================================================= Rail Fence Cipher ======================================================= //
 
@@ -1668,7 +1669,7 @@ int rail_fence(){
     bool checkk = true;
     while(checkk){
 
-            // Declaring some variables
+        // Declaring some variables
         string text;
         int  choice;
         ll key, counter = 0, num = 0;
@@ -1680,20 +1681,20 @@ int rail_fence(){
 
         if (choice == 1)                                    // If he chooses to encrypt
         {
-                // To get the sentence and the key from user
+            // To get the sentence and the key from user
             cout << "Enter sentence you want to encrypt: ";
             getline(cin, text);
             text = remove_space(text);
             key = check_number("Enter the key you want to encrypt by :");
             char arr[key][text.length()];
 
-                // To fill the 2D array with points to simplify it
+            // To fill the 2D array with points to simplify it
             for (int i = 0 ; i < key ; i++){
                 for(int j = 0 ; j < text.length();j++)
                     arr[i][j] = '.';
             }
 
-                // To make the rail fence of the sentence
+            // To make the rail fence of the sentence
             for(int i = 0 ; i < text.size();i++){
                 arr[num][i] = text[i];
                 if(!check)
@@ -1704,16 +1705,16 @@ int rail_fence(){
                     check = !check;
             }
 
-                // Print the process that is done
+            // Print the process that is done
             cout << "\n==== Encryption Process... ===="<<endl;
-                // To print the 2D array
+            // To print the 2D array
             for (int i = 0 ; i < key ; i++){
                 for(int j = 0 ; j < text.length() ; j++)
                     cout << arr[i][j];
                 cout << endl;
             }
 
-                // To print the encrypted code
+            // To print the encrypted code
             cout << "\nThe Encryption of your sentence is: ";
             for (int i = 0 ; i < key ; i++){
                 for (int j = 0 ; j < text.length(); j++ ){
@@ -1726,20 +1727,20 @@ int rail_fence(){
 
         else if (choice == 2)                               // If he chooses to decrypt
         {
-                // To get the sentence and the key from user
+            // To get the sentence and the key from user
             cout << "Enter sentence you want to decrypt: ";
             getline(cin, text);
             text = remove_space(text);
             key = check_number("Enter the key you want to decrypt text by");
             char arr[key][text.length()];
 
-                // To fill the 2D array with points to simplify it
+            // To fill the 2D array with points to simplify it
             for (int i = 0 ; i < key ; i++){
                 for(int j = 0 ; j < text.length();j++)
                     arr[i][j] = '.';
             }
 
-                // To identify the place of characters in the rail fence to declare it
+            // To identify the place of characters in the rail fence to declare it
             for(int i = 0 ; i < text.size();i++){
                 arr[num][i] = '#';
                 if(!check)
@@ -1750,7 +1751,7 @@ int rail_fence(){
                     check = !check;
             }
 
-                // To declare it by arranging the characters
+            // To declare it by arranging the characters
             for (int i = 0 ; i < key ; i++){
                 for (int j = 0 ; j < text.length(); j++ ){
                     if (arr[i][j] != '.'){
@@ -1761,14 +1762,14 @@ int rail_fence(){
             }
 
             cout << "\n==== Decryption Process... ====" << endl;
-                // To print the 2D array
+            // To print the 2D array
             for (int i = 0 ; i < key ; i++){
                 for(int j = 0 ; j < text.length() ; j++)
                     cout << arr[i][j];
                 cout << endl;
             }
 
-                // To print the text in its normal state after declaration
+            // To print the text in its normal state after declaration
             cout << "\nThe Decription of your text: ";
             for (int i = 0 ; i < text.length() ; i++){
                 for (int j = 0 ; j < key; j++ ){
@@ -1784,7 +1785,7 @@ int rail_fence(){
             return 0;
 
         cout << endl;
-            // To see if user wants to encrype with the same type of cipher or no
+        // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
 }
@@ -1795,22 +1796,22 @@ int main(){
     int option;
     string option1;
 
-        // A description for user to simplify the program.
+    // A description for user to simplify the program.
     cout << "# The Description For User To Simplify The Program:" << endl;
     cout << "--> This program is for encryption your important information like password to be hard for strangers to get it." << endl;
     cout << "--> Also it can decryption if your password is already encrypt with one of this ciphers." << endl;
     cout << "// ================================================================================================================== //";
     cout << "\n# ===== Welcome To Encryption and Decryption Program ===== #" << endl;
 
-        // To keep the program running till user wants to exit.
+    // To keep the program running till user wants to exit.
     while (true){
 
-            // Show the available ciphers for user.
+        // Show the available ciphers for user.
         string menu11 = "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-Fence Cipher.\n [11] Exit Program.\nEnter Your Choice : ";
         vector <string> choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         option = menu_check(choices ,menu11);
 
-            // Affine Cipher.
+        // Affine Cipher.
         if (option == 1)
             affine_cipher();
 
