@@ -169,11 +169,11 @@ void encyption_route(string text){
         if (isalpha(i))
             new_text += i;
     }
-    while (key < 2 || key > new_text.size()/2){
-        cout << "Invalid Input.\nEnter Your Key: ";
+    while (key < 2){
+        cout << "Invalid Input.\nEnter Your Keyword: ";
         cin >> key;
     }
-    int num = new_text.size() / key;
+    int num = new_text.size();
     if (num % key == 0){
         char matrix[text.size()], arr[num][key];
         for (int i = 0; i < text.size(); i++){
@@ -234,13 +234,13 @@ void encyption_route(string text){
         cout << "\nThe Encrypted Message is: " << res << endl;
     }
     else{
-        char matrix[key * (num+1)], arr[num+1][key];
-        int j = text.size();
-        while (j < key*(num+1)){
-            new_text += 'X';
+        char matrix[key * ((num/2)+1)], arr[(num/2)+1][key];
+        int j = new_text.size();
+        while (j < key * ((num/key)+1)){
+            new_text.push_back('X');
             j++;
         }
-
+        cout << new_text << endl;
         for (int i = 0; i < key*(num+1); i++){
             matrix[i] = new_text[i];
         }
@@ -298,7 +298,7 @@ void encyption_route(string text){
             }
             k++;
         }
-        cout << "\nThe Encrypted Message is: " << res.substr(0,key*(num+1)) << endl;
+        cout << "\nThe Encrypted Message is: " << res.substr(0, key*((num/key)+1)) << endl;
     }
 }
 
@@ -906,7 +906,7 @@ int baconoian_cipher()
             break;
 
         // To see if user wants to encrype with the same type of cipher or no
-        string menu10 = "Do you want to continue with same cipher?\n[1] Yes \n[2] No \n Your choice : ";
+        string menu10 = "Do you want to continue with same cipher?\n [1] Yes. \n [2] No. \nEnter Your Choice : ";
         vector <string> choices10 = {"1", "2"};
         ll num  = menu_check(choices10, menu10);
         if (num == 2)
@@ -1017,7 +1017,7 @@ int simple_substitution_cipher(){
     bool checkk = true;
     while(checkk){
         // Print the menu and check the validity of choice
-        string menu4 = "What do you want to do?\n [1]Encrypt a message.\n [2]Decrypt a message.\n [3]Exit This Cipher.\nEnter Your Choice: ";
+        string menu4 = "What do you want to do?\n [1] Encrypt a message.\n [2] Decrypt a message.\n [3] Exit This Cipher.\nEnter Your Choice: ";
         ll choice;
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu4);
