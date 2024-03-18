@@ -906,7 +906,11 @@ int baconoian_cipher()
             break;
 
         // To see if user wants to encrype with the same type of cipher or no
-        checkk = continue_or();
+        string menu10 = "Do you want to continue with same cipher?\n[1] Yes \n[2] No \n Your choice : ";
+        vector <string> choices10 = {"1", "2"};
+        ll num  = menu_check(choices10, menu10);
+        if (num == 2)
+            checkk = false;
     }
 }
 
@@ -1855,5 +1859,22 @@ int main(){
         else if (option == 11){
             cout << "\n# ===== Thanks for using our Program !! ===== #" << endl;
             return 0;}
+        
+        // To ask user if he wants to continue or not
+        while (true){
+            cout << "do you want to continue?\n[1] Yes\n[2] No\nYour choice is :";
+            getline(cin, option1);
+
+            if(option1 == "1" || option1 == "2")
+                break;
+            else
+                cout << "Please enter a valid input" << endl;
+
+        // To Exit program
+        if (option1 == "2"){
+            cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
+            break;}
+        }
     }
+    return 0;
 }
