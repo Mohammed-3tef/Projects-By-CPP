@@ -41,13 +41,14 @@ bool continue_or(){
         cout << "Do you want to continue in this cipher?\n [1] Yes.\n [2] No.\nEnter Your Choice :";
         getline(cin, choice);
 
-        if(choice == "1")
-            return true;
+        if(choice == "1"){
+            cout << endl;
+            return true;}
         else if (choice == "2"){
             cout << endl;
             return false;}
         else
-            cout << "Please enter a valid input" << endl;
+            cout << "Please enter a valid input." << endl;
     }
 }
 
@@ -170,7 +171,7 @@ void encyption_route(string text){
             new_text += i;
     }
     while (key < 2){
-        cout << "Invalid Input.\nEnter Your Keyword: ";
+        cout << "Invalid Input.\nEnter Your Key: ";
         cin >> key;
     }
     int num = new_text.size();
@@ -328,7 +329,7 @@ int route_cipher()
     while (checkk)
     {
         // Showing a list for user to choose encryption or decryption.
-        string menu1 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter Your Choice: ";
+        string menu1 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This Cipher.\nEnter Your Choice: ";
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu1);
 
@@ -661,7 +662,7 @@ int vignere_cipher()
     while (checkk)
     {
         // Showing a list for user to choose encryption or decryption
-        string menu8 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This Cipher.\n";
+        string menu8 = "What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This Cipher.\nEnter Your Choice: ";
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu8);
 
@@ -688,7 +689,7 @@ int vignere_cipher()
         }
 
 
-        else if (Choice == 2){                                // if a user chooses to decrypt
+        else if (Choice == 2){                                // If a user chooses to decrypt
             string result, text = "";
             cin.ignore(0, '\n');
 
@@ -1190,8 +1191,8 @@ int Polybius_Square_cipher()
     bool checkk = true;
     while (checkk)
     {
-            // Showing a list for user to choose encryption or decryption
-        string menu5 ="What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This cipher.\nEnter your choice: ";
+        // Showing a list for user to choose encryption or decryption
+        string menu5 ="What do you tend to do?\n [1] Cipher Message.\n [2] Decipher Message.\n [3] Exit This Cipher.\nEnter Your Choice: ";
         vector <string> choices = {"1", "2", "3"};
         Choice = menu_check(choices, menu5);
 
@@ -1225,6 +1226,22 @@ int Polybius_Square_cipher()
                 // Getting an Encrypted message from user
                 cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
                 getline(cin, result);
+
+                // To check that the input contains digits and spaces or not
+                while (true){
+                    ll count = 0;
+                    for (int i = 0; i<result.size() ;i++){
+                        if (isdigit(result[i]) || isspace(result[i])){
+                            count++;}
+                    }
+                    if (count == result.size())
+                        break;
+                    else{
+                        cout << "The input should be only digits and spaces." << endl;
+                        cout << "Enter Your Encrypted Message to decrypt it (80 char is max limit): ";
+                        getline(cin, result);
+                    }
+                }
 
                 // To check that text size is less than 80 chars and decrypt it
                 if (result.size() <= 80){
@@ -1394,7 +1411,7 @@ void morse_decipher(string text)
         if (count == 0 && text1[i] == " ")
             result += " ";
     }
-    cout << "The Decrypted Message is: "<< result << endl;
+    cout << "The Decrypted Message is: " << result << endl;
 }
 
 // Main Program of Morse Cipher.
@@ -1779,7 +1796,7 @@ int rail_fence(){
             for (int i = 0 ; i < int(text.length()) ; i++){
                 for (int j = 0 ; j < key; j++ ){
                     if(arr[j][i] != '.')
-                        cout <<arr[j][i];
+                        cout << arr[j][i];
                 }
             }
             cout << endl;
@@ -1813,7 +1830,7 @@ int main(){
     while (true){
 
         // Show the available ciphers for user.
-        string menu11 = "Which type of Cipher Do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-Fence Cipher.\n [11] Exit Program.\nEnter Your Choice : ";
+        string menu11 = "Which type of Cipher do you want?\n [1] Affine Cipher.\n [2] Route Cipher.\n [3] Atbash Cipher.\n [4] Vignere Cipher.\n [5] Baconian Cipher.\n [6] Simple Substitution Cipher.\n [7] Polybius Square Cipher.\n [8] Morse Cipher.\n [9] XOR Cipher.\n [10] Rail-Fence Cipher.\n [11] Exit Program.\nEnter Your Choice : ";
         vector <string> choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
         option = menu_check(choices ,menu11);
 
@@ -1859,24 +1876,24 @@ int main(){
 
             // Exit Program.
         else if (option == 11){
-            cout << "\n# ===== Thanks for using our Program !! ===== #" << endl;
+            cout << "\n# ===== Thanks For Using Our Program ===== #" << endl;
             return 0;}
-        
+
         // To ask user if he wants to continue or not
-        while (true){
-            cout << "do you want to continue?\n[1] Yes\n[2] No\nYour choice is :";
-            getline(cin, option1);
-
-            if(option1 == "1" || option1 == "2")
-                break;
-            else
-                cout << "Please enter a valid input" << endl;
-
-        // To Exit program
-        if (option1 == "2"){
-            cout << "\n# ===== Thanks for using our Program! ===== #" << endl;
-            break;}
-        }
+//        while (true){
+//            cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your Choice:";
+//            getline(cin, option1);
+//
+//            if(option1 == "1" || option1 == "2")
+//                break;
+//            else
+//                cout << "Please enter a valid input." << endl;
+//
+//            // To Exit program
+//            if (option1 == "2"){
+//                cout << "\n# ===== Thanks For Using Our Program ===== #" << endl;
+//                break;}
+//        }
     }
     return 0;
 }
