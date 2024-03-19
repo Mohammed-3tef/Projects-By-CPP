@@ -1590,7 +1590,7 @@ int XOR_cipher(){
             cout << "The Hexa Cipher : ";
             for(string i : result)
                 cout << i << ' ';
-            cout << endl;
+            cout << endl << endl;
         }
 
         else if(choice == 2){
@@ -1663,7 +1663,7 @@ int XOR_cipher(){
                 res += char(key1[i]^char(hexa_dec(arr[i])));
             }
 
-            cout << "The Original Message is " << res << endl;
+            cout << "The Original Message is " << res << endl << endl;
         }
         else
             return 0;
@@ -1877,9 +1877,9 @@ int main(){
             // Exit Program.
         else if (option == 11){
             cout << "\n# ===== Thanks For Using Our Program ===== #" << endl;
-            return 0;}
+            break;}
 
-        // To ask user if he wants to continue or not
+        // To ask the user if he wants to continue or not
 //        while (true){
 //            cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your Choice:";
 //            getline(cin, option1);
