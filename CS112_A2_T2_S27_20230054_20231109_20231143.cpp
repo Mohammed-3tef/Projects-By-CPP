@@ -91,9 +91,9 @@ void validity(string &text){
                 getline(cin, text);
             }
         }
-        if (count == int(text.size())){
+        if (count == int(text.size()))
             break;
-        }
+
     }
 }
 
@@ -379,10 +379,13 @@ int route_cipher()
         }
 
             // Exit of this cipher.
-        else if (Choice == 3)
+        else if (Choice == 3){
+            cout << endl;
             return 0;
+        }
 
         // To see if a user wants to encrypt with the same type of cipher or no.
+        cin.ignore(1, '\n');
         checkk = continue_or();
     }
     return 0;
@@ -487,14 +490,14 @@ int atbash_cipher(){
     bool checkk = true;
     while(checkk){
         // Print the menu and check the validity of choice
-        string menu2 ="What do you want to do?\n [1]Encrypt a message.\n [2]Decrypt a message.\n [3]Exit This Cipher.\nEnter Your Choice: ";
+        string menu2 ="What do you want to do?\n [1] Encrypt a message.\n [2] Decrypt a message.\n [3] Exit This Cipher.\nEnter Your Choice: ";
         ll choice;
         vector <string> choices = {"1", "2", "3"};
         choice = menu_check(choices, menu2);
 
         // Print the menu and check the validity of choice and encrypt a message
         if(choice == 1){
-            string menu = "What do you want to do?\n [1]Encrypt a message on the whole alphabet.\n [2]Encrypt a message on half alphabet.\n [3]Back.\nEnter Your Choice: ";
+            string menu = "What do you want to do?\n [1] Encrypt a message on the whole alphabet.\n [2] Encrypt a message on half alphabet.\n [3] Back.\nEnter Your Choice: ";
             int choice3;
             vector <string> choices = {"1", "2", "3"};
             choice3 = menu_check(choices, menu);
@@ -503,12 +506,12 @@ int atbash_cipher(){
             if(choice3 == 1 || choice3 == 2){
                 cout << "Please enter the message you want to encrypt: ";
                 getline(cin, text);
-                cout << "The encrypted message is: " << encrypt_atbash(text, choice3) << endl;
+                cout << "The Encrypted Message is: " << encrypt_atbash(text, choice3) << endl;
             }
         }
             // Print the menu and check the validity of choice and decrypt a message
         else if(choice == 2){
-            string menu4 = "What do you want to do?\n [1]Decrypt a message on the whole alphabet.\n [2]Decrypt a message on half alphabet.\n [3]Back.\nEnter Your Choice:";
+            string menu4 = "What do you want to do?\n [1] Decrypt a message on the whole alphabet.\n [2] Decrypt a message on half alphabet.\n [3] Back.\nEnter Your Choice:";
             ll choice2;
             vector <string> choices = {"1", "2", "3"};
             choice2 = menu_check(choices, menu4);
@@ -517,7 +520,7 @@ int atbash_cipher(){
             if(choice2 == 1 || choice2 == 2){
                 cout << "Please enter the message you want to decrypt: ";
                 getline(cin, text);
-                cout << "The decrypted message is: " << decrypt_atbash(text, choice2) << endl;
+                cout << "The Decrypted Message is: " << decrypt_atbash(text, choice2) << endl;
             }
 
         }
@@ -852,7 +855,7 @@ int baconoian_cipher()
     bool checkk = true;
     while(checkk)
     {
-        string menu3 = "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit.\nEnter Your choice: ";
+        string menu3 = "What do you want to do?\n [1] Encryption of Sentence. \n [2] Decryption of Sentence. \n [3] Exit This Cipher.\nEnter Your Choice: ";
         ll main4;
         vector <string> choices = {"1", "2", "3"};
         main4 = menu_check(choices, menu3);
@@ -887,7 +890,7 @@ int baconoian_cipher()
             }
 
             // Print the encrypted message
-            cout << "The Encrypted Message is: " << encryption_baconian(text) << endl;
+            cout << "\nThe Encrypted Message is: " << encryption_baconian(text) << endl << endl;
         }
 
             // Check if the user wants to enter a message to decrypt
@@ -899,7 +902,7 @@ int baconoian_cipher()
             validity1(text);
 
             // Print the decrypted message
-            cout << "The Decrypted Message is: " << decryption_baconian(text) << endl;
+            cout << "\nThe Decrypted Message is: " << decryption_baconian(text) << endl << endl;
         }
 
             // Back to the main menu
@@ -910,8 +913,10 @@ int baconoian_cipher()
         string menu10 = "Do you want to continue with same cipher?\n [1] Yes. \n [2] No. \nEnter Your Choice : ";
         vector <string> choices10 = {"1", "2"};
         ll num  = menu_check(choices10, menu10);
-        if (num == 2)
+        if (num == 2){
             checkk = false;
+            cout << endl;
+        }
     }
     return 0;
 }
@@ -1033,7 +1038,7 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The Encrypted Message is: " << encrypt_simple_substitution(text, keyword) << endl;
+            cout << "\nThe Encrypted Message is: " << encrypt_simple_substitution(text, keyword) << endl << endl;
         }
 
             // Get the message and decrypt messages
@@ -1045,7 +1050,7 @@ int simple_substitution_cipher(){
             cout << "Please enter the keyword: ";
             getline(cin, keyword);
             validity2(keyword);
-            cout << "The Decrypted Message is: " << decrypt_simple_substitution(text, keyword) << endl;
+            cout << "\nThe Decrypted Message is: " << decrypt_simple_substitution(text, keyword) << endl << endl;
         }
             // Exit the cipher
         else if(choice == 3){
@@ -1260,6 +1265,8 @@ int Polybius_Square_cipher()
         else if (Choice == 3)
             return 0;
 
+        // To see if user wants to encrype with the same type of cipher or no
+        cin.ignore(1, '\n');
         checkk = continue_or();
     }
     return 0;
@@ -1879,21 +1886,6 @@ int main(){
             cout << "\n# ===== Thanks For Using Our Program ===== #" << endl;
             break;}
 
-        // To ask the user if he wants to continue or not
-//        while (true){
-//            cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your Choice:";
-//            getline(cin, option1);
-//
-//            if(option1 == "1" || option1 == "2")
-//                break;
-//            else
-//                cout << "Please enter a valid input." << endl;
-//
-//            // To Exit program
-//            if (option1 == "2"){
-//                cout << "\n# ===== Thanks For Using Our Program ===== #" << endl;
-//                break;}
-//        }
     }
     return 0;
 }
