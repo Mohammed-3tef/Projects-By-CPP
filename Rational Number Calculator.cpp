@@ -13,178 +13,46 @@
 --> Author 3: Aly El-Deen Yasser Aly.                 (ID:20231109)         (Section : S27)
 --> Email : aibakgaming747@gmail.com
 
-==========================================================Algorithm===================================================================*/
+=============================================================== Algorithm for: ========================================================================
+======================================================== (Rational Number Calculator) =================================================================
 
-// FUNCTION simple(a, b)
-//     r, n, d = a, a, b
-//     a = ABS(a)
-//     b = ABS(b)
+•	Print	“a welcome message and lines in brief to define the application.”
+•	Make a while loop to make the program running until the user chooses to exit after each operation.
+•	Define some variables.
+•	Take an expression from user to calculate as a string.
+•	Check the validity of the expression as it doesn’t have characters except numbers and (-, +, /or*), if that didn’t achieve print a warning message and take another expression from the user.
+•	Turn the expression into numbers and operators in the form [numerator1/denominator1 (-, +, /or*) numerator2/ denominator2] as numerator1, denominator1, numerator2 and denominator2 are integers positive or negative.
 
-//     WHILE (r = a % b) != 0
-//         a = b
-//         b = r
+•	If operation is /, do the following lines:
 
-//     IF n < 0 AND d < 0 THEN
-//         n = ABS(n)
-//         d = ABS(d)
+        o	Check if denominator1, numerator2 or denominator2 is zero, and if this happened, print a warning message and take another expression from the user.
+        o	The result of the expression will be (numerator1*denominator2)/ (denominator1*numerator2).
 
-//     OUTPUT "The Result = ", n/b, "/", d/b
 
-// FUNCTION main()
-//     OUTPUT "Welcome to Rational Numbers Calculator"
-//     OUTPUT "In this calculator, we will enter two fractional numbers and perform addition, subtraction, multiplication, and division to give you the answer."
-//     OUTPUT "The format you will enter must be like this: [num/num (+, -, * or /) num/num]."
-//     OUTPUT "Note: Space after the fractional number is important."
+•	If operation is *, do the following lines:
 
-//     WHILE true
-//         DECLARE text, continue_or, numerator_1, denominator_1, numerator_2, denominator_2, num1, num2
-//         DECLARE numerator1, denominator1, numerator2, denominator2, denominator_result, numerator_result, operation
-//         DECLARE check, check1 BOOLEAN
+        o	Check if denominator1 or denominator2 is zero, and if this happened, print a warning message and take another expression from the user.
+        o	The result of the expression will be (numerator1* numerator2)/ (denominator1* denominator2).
 
-//         SET numerator1, denominator1, numerator2, denominator2 TO 1
-//         SET check, check1 TO FALSE
 
-//         OUTPUT "Enter the equation you want to calculate: "
-//         READ text
+•	If operation is +, do the following lines:
 
-//         IF text matches regex pattern "(\\s*[-+]?\\s*[0-9]+\\s*/\\s*[-+]?\\s*[0-9]+\\s*|\\s*[-+]?\\s*[0-9]+\\s*)\\s+([+*/-])\\s+(\\s*[-+]?\\s*[0-9]+\\s*/\\s*[-+]?\\s*[0-9]+\\s*|\\s*[-+]?\\s*[0-9]+\\s*)" THEN
-//             SET operation TO extracted operation from text
-//             SET num1 TO extracted num1 from text
-//             SET num2 TO extracted num2 from text
+        o	Check if denominator1 or denominator2 is zero, and if this happened, print a warning message and take another expression from the user.
+        o	The result of the expression will be ((numerator1* denominator2) + (numerator2 * denominator1)) / (denominator1* denominator2).
 
-//             FOR each character i IN num1
-//                 IF i = '/' THEN
-//                     SET check TO TRUE
-//                     CONTINUE
-//                 END IF
 
-//                 IF NOT check AND i != '+' AND i != ' ' THEN
-//                     APPEND i TO numerator_1
-//                 ELSE IF i != '+' AND i != ' ' THEN
-//                     APPEND i TO denominator_1
-//                 END IF
-//             END FOR
+•	If operation is -, do the following lines:
 
-//             FOR each character i IN num2
-//                 IF i = '/' THEN
-//                     SET check1 TO TRUE
-//                     CONTINUE
-//                 END IF
+        o	Check if denominator1 or denominator2 is zero, and if this happened, print a warning message and take another expression from the user.
+        o	The result of the expression will be ((numerator1* denominator2) - (numerator2 * denominator1)) / (denominator1* denominator2).
+*/
+// ==========================================================>> Main Code <<=================================================================== //
 
-//                 IF NOT check1 AND i != '+' AND i != ' ' THEN
-//                     APPEND i TO numerator_2
-//                 ELSE IF i != '+' AND i != ' ' THEN
-//                     APPEND i TO denominator_2
-//                 END IF
-//             END FOR
-
-//             SET numerator1 TO CONVERT_TO_INTEGER(numerator_1)
-//             SET numerator2 TO CONVERT_TO_INTEGER(numerator_2)
-
-//             IF denominator_1 != "" THEN
-//                 SET denominator1 TO CONVERT_TO_INTEGER(denominator_1)
-//             END IF
-
-//             IF denominator_2 != "" THEN
-//                 SET denominator2 TO CONVERT_TO_INTEGER(denominator_2)
-//             END IF
-
-//             IF operation = '/' THEN
-//                 IF denominator1 != 0 AND denominator2 != 0 AND numerator2 != 0 THEN
-//                     BREAK
-//                 ELSE
-//                     OUTPUT "Please don't enter a zero in the denominator."
-//                 END IF
-//             ELSE
-//                 IF denominator1 != 0 AND denominator2 != 0 THEN
-//                     BREAK
-//                 ELSE
-//                     OUTPUT "Please don't enter a zero in the denominator."
-//                 END IF
-//             END IF
-//         ELSE
-//             OUTPUT "Please enter with the defined formula and don't enter a zero in the denominator."
-//         END IF
-//     END WHILE
-
-//     SWITCH operation
-//         CASE '+':
-//             SET numerator_result TO (numerator1 * denominator2) + (numerator2 * denominator1)
-//             SET denominator_result TO denominator1 * denominator2
-
-//             IF numerator_result % denominator_result = 0 THEN
-//                 SET numerator_result TO numerator_result / denominator_result
-//                 SET denominator_result TO 1
-//             END IF
-
-//             CALL simple(numerator_result, denominator_result)
-//             BREAK
-
-//         CASE '-':
-//             SET numerator_result TO (numerator1 * denominator2) - (numerator2 * denominator1)
-//             SET denominator_result TO denominator1 * denominator2
-
-//             IF numerator_result % denominator_result = 0 THEN
-//                 SET numerator_result TO numerator_result / denominator_result
-//                 SET denominator_result TO 1
-//             END IF
-
-//             CALL simple(numerator_result, denominator_result)
-//             BREAK
-
-//         CASE '*':
-//             SET numerator_result TO numerator1 * numerator2
-//             SET denominator_result TO denominator1 * denominator2
-
-//             IF numerator_result % denominator_result = 0 THEN
-//                 SET numerator_result TO numerator_result / denominator_result
-//                 SET denominator_result TO 1
-//             END IF
-
-//             CALL simple(numerator_result, denominator_result)
-//             BREAK
-
-//         CASE '/':
-//             SET numerator_result TO numerator1 * denominator2
-//             SET denominator_result TO denominator1 * numerator2
-
-//             IF denominator_result = 0 THEN
-//                 BREAK
-//             END IF
-
-//             IF numerator_result % denominator_result = 0 THEN
-//                 SET numerator_result TO numerator_result / denominator_result
-//                 SET denominator_result TO 1
-//             END IF
-
-//             CALL simple(numerator_result, denominator_result)
-//             BREAK
-//     END SWITCH
-
-//     WHILE true
-//         OUTPUT "Do you want to continue?"
-//         OUTPUT "[1] Yes."
-//         OUTPUT "[2] No."
-//         OUTPUT "Enter Your Choice: "
-//         READ continue_or
-
-//         IF continue_or = "1" THEN
-//             BREAK
-//         ELSE IF continue_or = "2" THEN
-//             OUTPUT "Thanks For Using Rational Number Calculator ...."
-//             RETURN 0
-//         ELSE
-//             OUTPUT "Please enter a valid choice !!"
-//         END IF
-//     END WHILE
-// END FUNCTION
-
-// ==========================================================Main Code===================================================================
 #include <bits/stdc++.h>
 #define ll long long
 using namespace std;
 
-// function for simplifing
+// Function for simplifying.
 void simple (ll a, ll b)
 {
     ll r, n = a, d = b;
@@ -206,12 +74,12 @@ void simple (ll a, ll b)
 // =====================================================================>> Main Application <<===================================================================== //
 
 int main(){
-        // To show the user the rules of the calculator.
-    cout << "# ===== Welcome to Rational Numbers Calculator ===== #" << endl;
+    // To show the user the rules of the calculator.
+    cout << "# ==================================== Welcome to Rational Numbers Calculator ======================================= #" << endl << endl;
     cout << "--> In this calculator we will enter two fractional number and make addition, subtraction, multiplication and division " << endl;
-    cout << "    to give you the answer of your equation." << endl;
+    cout << "    to give you the answer of your expression." << endl;
     cout << "--> The form that you will enter must be like that [num/num (+, -, * or /) num/num]." << endl;
-    cout << "Note : space after the the fractional number is important." << endl;
+    cout << "Note : Space after the the fractional number is important." << endl;
     cout << "======================================================================================================================" << endl;
 
     // To keep the program running.
@@ -225,6 +93,7 @@ int main(){
 
         // To check program is as the required form
         while(true){
+
             // Defining some variables.
             check = false, check1 = false;
             numerator_1 = "", denominator_1 = "", numerator_2 = "", denominator_2 = "";
@@ -269,26 +138,26 @@ int main(){
 
                 // to check if denomerator not equal to zero
                 if(operation == '/'){
-                    if(denominator1 != 0 && denominator2 != 0 && numerator2 != 0) 
+                    if(denominator1 != 0 && denominator2 != 0 && numerator2 != 0)
                         break;
                     else
-                        cout << "please don't enter a zero in the denominator." << endl;
+                        cout << "Please don't enter a zero in the denominator." << endl << endl;
                 }
                 else{
-                    if(denominator1 != 0 && denominator2 != 0) 
+                    if(denominator1 != 0 && denominator2 != 0)
                         break;
                     else
-                        cout << "please don't enter a zero in the denominator." << endl;
+                        cout << "Please don't enter a zero in the denominator." << endl << endl;
                 }
             }
 
             else
-                cout << "Please enter with the defined formula and don't enter a zero in the denominator." << endl;
+                cout << "Please enter with the defined formula and don't enter a zero in the denominator." << endl << endl;
         }
 
-            // To do what user wants.
+        // To do what user wants.
         switch (operation){
-                // Addition.
+            // Addition.
             case '+':
                 numerator_result = (numerator1 * denominator2) + (numerator2 * denominator1);
                 denominator_result = denominator1 * denominator2;
@@ -339,7 +208,7 @@ int main(){
                 break;
         }
 
-            // To check if user wants to continue using calculator or not.
+        // To check if user wants to continue using calculator or not.
         while(true){
             cout << "Do you want to continue?\n [1] Yes.\n [2] No.\nEnter Your Choice : " ;
             getline(cin, continue_or);
