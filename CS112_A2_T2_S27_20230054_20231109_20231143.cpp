@@ -24,7 +24,7 @@ ll menu_check(vector<string> choices, string menu){
     while(true){
         cout << menu;
         getline(cin, choice);
-        for(int i = 0 ; i < choices.size() ;i++){
+        for(int i = 0 ; i < int(choices.size()) ;i++){
             if (choice == choices[i]){
                 cin.ignore(0,'\n');
                 return stoll(choice);
@@ -176,7 +176,7 @@ void encyption_route(string text){
     int num = new_text.size();
     if (num % key == 0){
         char matrix[text.size()], arr[num][key];
-        for (int i = 0; i < text.size(); i++){
+        for (int i = 0; i < int(text.size()); i++){
             matrix[i] = new_text[i];
         }
 
@@ -546,7 +546,7 @@ void vignere_cipher(string text){
         cout << "Enter Your Keyword to encrypt message by it (8 chars Maximum): ";
         getline(cin, key);
         ll count = 0;
-        for (int i = 0; i < key.size() ;i++){
+        for (int i = 0; i < int(key.size()) ;i++){
             if(isalpha(key[i])){
                 count++;
             }
@@ -564,7 +564,7 @@ void vignere_cipher(string text){
             }
 
             // Encryption process
-            while (i < text.length()){
+            while (i < int(text.length())){
                 text[i] = toupper(text[i]);
                 key[i] = toupper(key[i]);
 
@@ -620,7 +620,7 @@ void vignere_decipher(string result){
             key = repeated_keyword.substr(0, num);
 
             // Decryption process
-            while (i < result.length()){
+            while (i < int(result.length())){
                 result[i] = toupper(result[i]);
                 key[i] = toupper(key[i]);
 
@@ -912,6 +912,7 @@ int baconoian_cipher()
         if (num == 2)
             checkk = false;
     }
+    return 0;
 }
 
 // ======================================================= Simple Substitution Cipher ======================================================= //
@@ -1144,7 +1145,7 @@ void polybius_square_decipher(string text)
     }
     string result = "";
 
-    for(int i = 0 ; i<text.size() ;){
+    for(int i = 0 ; i < int(text.size()) ;){
         if (isdigit(text[i]) && isdigit(text[i+1])){
             if(text.substr(i,2) == to_string(arr[0]) + to_string(arr[0])) {result += 'A';}
             else if(text.substr(i,2) == to_string(arr[0]) + to_string(arr[1])) {result += 'B';}
@@ -1558,7 +1559,7 @@ int XOR_cipher(){
             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
                 key1 += key;
 
-            for(int i = 0 ; i < text.length();i++){
+            for(int i = 0 ; i < int(text.length());i++){
                 res += char(key1[i]^text[i]);
             }
 
@@ -1596,7 +1597,7 @@ int XOR_cipher(){
                 cin.ignore(0, '\n');
 
                 string str = "";
-                for(int i = 0 ; i < text.length(); i++){
+                for(int i = 0 ; i < int(text.length()); i++){
                     if(isspace(text[i]) && !isspace(text[i-1])){
                         arr.push_back(str);
                         str = "";
@@ -1641,7 +1642,7 @@ int XOR_cipher(){
             for(int i = 0 ; i < ceil(double(text.length()/key.length())); i++)
                 key1 += key;
 
-            for(int i = 0 ; i < arr.size();i++){
+            for(int i = 0 ; i < int(arr.size());i++){
                 res += char(key1[i]^char(hexa_dec(arr[i])));
             }
 
@@ -1694,12 +1695,12 @@ int rail_fence(){
 
             // To fill the 2D array with points to simplify it
             for (int i = 0 ; i < key ; i++){
-                for(int j = 0 ; j < text.length();j++)
+                for(int j = 0 ; j < int(text.length());j++)
                     arr[i][j] = '.';
             }
 
             // To make the rail fence of the sentence
-            for(int i = 0 ; i < text.size();i++){
+            for(int i = 0 ; i < int(text.size());i++){
                 arr[num][i] = text[i];
                 if(!check)
                     num++;
@@ -1713,7 +1714,7 @@ int rail_fence(){
             cout << "\n==== Encryption Process... ===="<<endl;
             // To print the 2D array
             for (int i = 0 ; i < key ; i++){
-                for(int j = 0 ; j < text.length() ; j++)
+                for(int j = 0 ; j < int(text.length()) ; j++)
                     cout << arr[i][j];
                 cout << endl;
             }
@@ -1721,7 +1722,7 @@ int rail_fence(){
             // To print the encrypted code
             cout << "\nThe Encryption of your sentence is: ";
             for (int i = 0 ; i < key ; i++){
-                for (int j = 0 ; j < text.length(); j++ ){
+                for (int j = 0 ; j < int(text.length()); j++ ){
                     if(arr[i][j] != '.')
                         cout << arr[i][j];
                 }
@@ -1740,12 +1741,12 @@ int rail_fence(){
 
             // To fill the 2D array with points to simplify it
             for (int i = 0 ; i < key ; i++){
-                for(int j = 0 ; j < text.length();j++)
+                for(int j = 0 ; j < int(text.length());j++)
                     arr[i][j] = '.';
             }
 
             // To identify the place of characters in the rail fence to declare it
-            for(int i = 0 ; i < text.size();i++){
+            for(int i = 0 ; i < int(text.size());i++){
                 arr[num][i] = '#';
                 if(!check)
                     num++;
@@ -1757,7 +1758,7 @@ int rail_fence(){
 
             // To declare it by arranging the characters
             for (int i = 0 ; i < key ; i++){
-                for (int j = 0 ; j < text.length(); j++ ){
+                for (int j = 0 ; j < int(text.length()); j++ ){
                     if (arr[i][j] != '.'){
                         arr[i][j] = text[counter];
                         counter++;
@@ -1768,14 +1769,14 @@ int rail_fence(){
             cout << "\n==== Decryption Process... ====" << endl;
             // To print the 2D array
             for (int i = 0 ; i < key ; i++){
-                for(int j = 0 ; j < text.length() ; j++)
+                for(int j = 0 ; j < int(text.length()) ; j++)
                     cout << arr[i][j];
                 cout << endl;
             }
 
             // To print the text in its normal state after declaration
             cout << "\nThe Decription of your text: ";
-            for (int i = 0 ; i < text.length() ; i++){
+            for (int i = 0 ; i < int(text.length()) ; i++){
                 for (int j = 0 ; j < key; j++ ){
                     if(arr[j][i] != '.')
                         cout <<arr[j][i];
@@ -1792,6 +1793,7 @@ int rail_fence(){
         // To see if user wants to encrype with the same type of cipher or no
         checkk = continue_or();
     }
+    return 0;
 }
 
 // ========================================================================>> Main Program <<======================================================================== //
