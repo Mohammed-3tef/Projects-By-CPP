@@ -2,7 +2,7 @@
 --> Name: CS112_A2_T4_S27_20230054_20231109_20231143.cpp
 --> Purpose: this program is for encryption and decription your important information like your password, ID, etc.
 
---> Author 1: Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)
+--> Author 1: Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)       
 --> Email : mohamed45452020@gmail.com
 
 --> Author 2: Esraa Emary Abd Elsalam.             (ID:20230054)         (Section : S27)
@@ -10,6 +10,14 @@
 
 --> Author 3: Aly El-Deen Yasser Aly.            (ID:20231109)         (Section : S27)
 --> Email : aibakgaming747@gmail.com
+
+=============================================================================================================================================
+
+-->Author 1: Mohammed Atef Abd EL-Kader Bayomi.     Route Cipher, Vignere Cipher, Polybius Square Cipher and  Morse Mipher.
+
+-->Author 2: Esraa Emary Abd Elsalam.               Atbash Cipher, Baconoian Cipher, Simple Substitution Cipher and  Morse Decipher.
+
+-->Author 3: Aly El-Deen Yasser Aly.                Affine Cipher, XOR Cipher and Rail Fence Cipher.
 
 ==============================================================================================================================================*/
 
@@ -933,20 +941,25 @@ void validity2(string &text){
             getline(cin, text);
         }
 
-        for (int i = 0; i < int(text.size()); i++){
-            if (isalpha(text[i]))
-                count++;
-            else{
-                cout << "Invalid Input."<<endl;
-                cout << "Please enter the keyword that only contains 5 letters of alphabet: ";
-                getline(cin, text);
+        for (int i = 0; i < int(text.size()); i++)
+        {
+            for (int j = 0; j < int(text.size()); j++)
+            {
+                if(isalpha(text[i]) && (text[i] != text[j]))
+                    count++;
             }
         }
-        if (count == int(text.size())){
+        if (count == 20)
             break;
+        else
+        {
+            cout << "Invalid Input." << endl;
+            cout << "Please enter the keyword that only contains 5 letters of alphabet: ";
+            getline(cin, text);
         }
     }
 }
+
 
 // Encryption the process of Simple Substitution Cipher.
 string encrypt_simple_substitution(string &text, string keyword){
@@ -1081,58 +1094,32 @@ void polybius_square_cipher(string text)
         i = toupper(i);
         if(isalpha(i))
         {
-            if (i == 'A')
-            {cout << arr[0] << arr[0];}
-            else if (i == 'B')
-            {cout << arr[0] << arr[1];}
-            else if (i == 'C')
-            {cout << arr[0] << arr[2];}
-            else if (i == 'D')
-            {cout << arr[0] << arr[3];}
-            else if (i == 'E')
-            {cout << arr[0] << arr[4];}
-            else if (i == 'F')
-            {cout << arr[1] << arr[0];}
-            else if (i == 'G')
-            {cout << arr[1] << arr[1];}
-            else if (i == 'H')
-            {cout << arr[1] << arr[2];}
-            else if (i == 'I')
-            {cout << arr[1] << arr[3];}
-            else if (i == 'J')
-            {cout << arr[1] << arr[3];}
-            else if (i == 'K')
-            {cout << arr[1] << arr[4];}
-            else if (i == 'L')
-            {cout << arr[2] << arr[0];}
-            else if (i == 'M')
-            {cout << arr[2] << arr[1];}
-            else if (i == 'N')
-            {cout << arr[2] << arr[2];}
-            else if (i == 'O')
-            {cout << arr[2] << arr[3];}
-            else if (i == 'P')
-            {cout << arr[2] << arr[4];}
-            else if (i == 'Q')
-            {cout << arr[3] << arr[0];}
-            else if (i == 'R')
-            {cout << arr[3] << arr[1];}
-            else if (i == 'S')
-            {cout << arr[3] << arr[2];}
-            else if (i == 'T')
-            {cout << arr[3] << arr[3];}
-            else if (i == 'U')
-            {cout << arr[3] << arr[4];}
-            else if (i == 'V')
-            {cout << arr[4] << arr[0];}
-            else if (i == 'W')
-            {cout << arr[4] << arr[1];}
-            else if (i == 'X')
-            {cout << arr[4] << arr[2];}
-            else if (i == 'Y')
-            {cout << arr[4] << arr[3];}
-            else if (i == 'Z')
-            {cout << arr[4] << arr[4];}
+            if (i == 'A'){cout << arr[0] << arr[0];}
+            else if (i == 'B'){cout << arr[0] << arr[1];}
+            else if (i == 'C'){cout << arr[0] << arr[2];}
+            else if (i == 'D'){cout << arr[0] << arr[3];}
+            else if (i == 'E'){cout << arr[0] << arr[4];}
+            else if (i == 'F'){cout << arr[1] << arr[0];}
+            else if (i == 'G'){cout << arr[1] << arr[1];}
+            else if (i == 'H'){cout << arr[1] << arr[2];}
+            else if (i == 'I'){cout << arr[1] << arr[3];}
+            else if (i == 'J'){cout << arr[1] << arr[3];}
+            else if (i == 'K'){cout << arr[1] << arr[4];}
+            else if (i == 'L'){cout << arr[2] << arr[0];}
+            else if (i == 'M'){cout << arr[2] << arr[1];}
+            else if (i == 'N'){cout << arr[2] << arr[2];}
+            else if (i == 'O'){cout << arr[2] << arr[3];}
+            else if (i == 'P'){cout << arr[2] << arr[4];}
+            else if (i == 'Q'){cout << arr[3] << arr[0];}
+            else if (i == 'R'){cout << arr[3] << arr[1];}
+            else if (i == 'S'){cout << arr[3] << arr[2];}
+            else if (i == 'T'){cout << arr[3] << arr[3];}
+            else if (i == 'U'){cout << arr[3] << arr[4];}
+            else if (i == 'V'){cout << arr[4] << arr[0];}
+            else if (i == 'W'){cout << arr[4] << arr[1];}
+            else if (i == 'X'){cout << arr[4] << arr[2];}
+            else if (i == 'Y'){cout << arr[4] << arr[3];}
+            else if (i == 'Z'){cout << arr[4] << arr[4];}
         }
         else if (isspace(i))
         {cout << " ";}
@@ -1235,7 +1222,7 @@ int Polybius_Square_cipher()
                 // To check that the input contains digits and spaces or not
                 while (true){
                     ll count = 0;
-                    for (int i = 0; i<result.size() ;i++){
+                    for (int i = 0; i< int(result.size()) ;i++){
                         if (isdigit(result[i]) || isspace(result[i])){
                             count++;}
                     }
@@ -1670,7 +1657,7 @@ int XOR_cipher(){
                 res += char(key1[i]^char(hexa_dec(arr[i])));
             }
 
-            cout << "The Original Message is " << res << endl << endl;
+            cout << "The Original Message is: " << res << endl << endl;
         }
         else
             return 0;
