@@ -1,21 +1,6 @@
+// =============================================================== Algorithm for: ======================================================================== //
+// ======================================================== (Rational Number Calculator) ================================================================= //
 /*
---> Name: CS112_A2_T3_S27_20230054_20231109_20231143.cpp
---> Purpose: In this application create a rational number calculator that is capable of taking two rational numbers
-             and an operation to perform on them. The Program should handle cases of –ve numbers and nominators without a denominator.
-             It should also use defensive programming to reject bad inputs.
-
---> Author 1: Mohammed Atef Abd EL-Kader Bayomi.      (ID:20231143)         (Section : S27)
---> Email : mohamed45452020@gmail.com
-
---> Author 2: Esraa Emary Abd Elsalam.                (ID:20230054)         (Section : S27)
---> Email : esraaemary33@gmail.com
-
---> Author 3: Aly El-Deen Yasser Aly.                 (ID:20231109)         (Section : S27)
---> Email : aibakgaming747@gmail.com
-
-=============================================================== Algorithm for: ========================================================================
-======================================================== (Rational Number Calculator) =================================================================
-
 •	Print	“a welcome message and lines in brief to define the application.”
 •	Make a while loop to make the program running until the user chooses to exit after each operation.
 •	Define some variables.
@@ -46,7 +31,8 @@
         o	Check if denominator1 or denominator2 is zero, and if this happened, print a warning message and take another expression from the user.
         o	The result of the expression will be ((numerator1* denominator2) - (numerator2 * denominator1)) / (denominator1* denominator2).
 */
-// ==========================================================>> Main Code <<=================================================================== //
+
+// ==========================================================================>> Main Code <<================================================================================ //
 
 #include <bits/stdc++.h>
 #define ll long long
