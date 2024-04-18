@@ -1,24 +1,5 @@
 /*
---> Name: CS112_A2_T4_S27_20230054_20231109_20231143.cpp
 --> Purpose: this program is for encryption and decription your important information like your password, ID, etc.
-
---> Author 1: Mohammed Atef Abd EL-Kader Bayomi.    (ID:20231143)         (Section : S27)       
---> Email : mohamed45452020@gmail.com
-
---> Author 2: Esraa Emary Abd Elsalam.             (ID:20230054)         (Section : S27)
---> Email : esraaemary33@gmail.com
-
---> Author 3: Aly El-Deen Yasser Aly.            (ID:20231109)         (Section : S27)
---> Email : aibakgaming747@gmail.com
-
-=============================================================================================================================================
-
--->Author 1: Mohammed Atef Abd EL-Kader Bayomi.     Route Cipher, Vignere Cipher, Polybius Square Cipher and  Morse Mipher.
-
--->Author 2: Esraa Emary Abd Elsalam.               Atbash Cipher, Baconoian Cipher, Simple Substitution Cipher and  Morse Decipher.
-
--->Author 3: Aly El-Deen Yasser Aly.                Affine Cipher, XOR Cipher and Rail Fence Cipher.
-
 ==============================================================================================================================================*/
 
 #include <bits/stdc++.h>
